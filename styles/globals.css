@@ -1,0 +1,24 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+  --headerBg: #212121;
+  --headerColor: #ffffff;
+  --headerSearchBg: #000000;
+  --headerSearchColor: #ffffff;
+  
+  --bodyBg: #212121;
+  --bodyColor: #ffffff;
+  --border-radius: 2px;
+  --font-family: 'Karla', sans-serif;
+}
+
+html{
+  font-size: 62.5%;
+}
+
+body{
+  font-size: 1.6rem;
+  color: var(--bodyColor);
+  background-color: var(--bodyBg);
+  font-family: var(--font-family);
+}

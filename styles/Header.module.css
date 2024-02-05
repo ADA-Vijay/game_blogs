@@ -1,0 +1,73 @@
+.headerWrap {
+    background-color: var(--headerBg);
+    color: var(--headerColor);
+    height: 7rem;
+}
+.headerWrap a{
+    text-transform: uppercase;
+    color: var(--headerColor);
+    font-size: 1.6rem;
+}
+.headerWrap a:hover,
+.headerWrap a:focus,
+.headerWrap a:active,
+.headerWrap a.active,
+.headerWrap a.show{
+    color: var(--headerColor) !important;
+    background-color: var(--headerBg);
+}
+.headerDropdown [data-bs-popper="static"]{
+    background-color: var(--headerBg);
+}
+.extraHeaderWrap{
+    display: flex;
+    align-items: center;
+}
+.searchHeaderWrap{
+    position: relative;
+}
+.searchInput{
+
+   
+}
+.searchInput input{
+    padding-left: 3.2rem;
+    background-color: var(--headerSearchBg);
+    color: var(--headerSearchColor);
+    border-color: var(--headerSearchBg);
+    font-size: 1.6rem;
+}
+.searchInput input:hover,
+.searchInput input:active,
+.searchInput input:focus{
+    background-color: var(--headerSearchBg);
+    color: var(--headerSearchColor);
+    border-color: var(--headerSearchBg);
+    box-shadow: unset;
+}
+.searchIcon{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.searchIcon svg{
+    height: 15px;
+    width: 15px;
+}
+.headerMenuWrap{
+    display: flex;
+    align-items: center;
+}
+.headerMenuWrap svg{
+    height: 25px;
+    width: 25px;
+}
+.headerlink,
+.searchHeaderWrap,
+.headerMenuWrap,
+.headerDropdown{
+    margin-right: 15px;
+}
