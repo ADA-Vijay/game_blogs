@@ -122,53 +122,54 @@
 
 @media only screen and (max-width: 1200px) {
     .edgt-container-inner,.edgt-grid,.edgt-grid-section .edgt-section-inner,.edgt-slider .carousel-inner .edgt-slider-content-outer {
-        width:950px
+        width:950px !important
+    }
+    .edgt-error-page-title {
+        font-size: 40px !important;
     }
 }
 
 @media only screen and (max-width: 1024px) {
     .edgt-container-inner,.edgt-grid,.edgt-grid-section .edgt-section-inner,.edgt-slider .carousel-inner .edgt-slider-content-outer {
-        width:768px
+        width:768px !important
     }
 }
 
 @media only screen and (max-width: 768px) {
     .edgt-container-inner,.edgt-grid,.edgt-grid-section .edgt-section-inner,.edgt-slider .carousel-inner .edgt-slider-content-outer {
-        width:600px
+        width:600px !important
     }
 }
 
 @media only screen and (max-width: 600px) {
     .edgt-container-inner,.edgt-grid,.edgt-grid-section .edgt-section-inner,.edgt-slider .carousel-inner .edgt-slider-content-outer {
-        width:420px
+        width:420px !important
     }
 }
 
 @media only screen and (max-width: 480px) {
     .edgt-container-inner,.edgt-grid,.edgt-grid-section .edgt-section-inner,.edgt-slider .carousel-inner .edgt-slider-content-outer {
-        width:300px
+        width:300px !important
     }
 }
 
 @media only screen and (max-width: 320px) {
     .edgt-container-inner,.edgt-grid,.edgt-grid-section .edgt-section-inner,.edgt-slider .carousel-inner .edgt-slider-content-outer {
-        width:95%
+        width:95% !important
     }
 }
 @media only screen and (max-width: 1024px) {
      .edgt-content {
-        margin-top:-143px!important;
-        padding-top: 143px;
+        margin-top:-143px !important;
+        padding-top: 143px !important;
     }
 }
 
 
 
 @media only screen and (max-width: 600px) {
-  
-
     .edgt-error-page-title {
-        font-size: 40px
+        font-size: 40px !important
     }
 
     .edgt-404-image {
