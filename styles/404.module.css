@@ -1,0 +1,240 @@
+ .edgt-content {
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.edgt-content {
+    margin-top: 0;
+    position: relative;
+    z-index: 100;
+    background-color: #fff;
+}
+ .edgt-content .edgt-content-inner {
+    height: 100%;
+}
+
+
+ .edgt-content .edgt-content-inner .edgt-404-page {
+    position: relative;
+    display: table;
+    height: 100%;
+    width: 100%;
+}
+.edgt-404-page {
+    background-image: url(https://eldritch.qodeinteractive.com/wp-content/uploads/2017/06/404.jpg);
+}
+
+.edgt-404-page {
+    background-color: #444;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: 100;
+}
+
+.edgt-container:before {
+    content: " ";
+    display: table;
+}
+
+
+ .edgt-content .edgt-content-inner .edgt-404-page .edgt-page-not-found {
+    position: relative;
+    display: table-cell;
+    height: 100%;
+    width: 100%;
+    vertical-align: middle;
+}
+
+.edgt-page-not-found {
+    text-align: center;
+}
+.edgt-page-not-found .edgt-404-image {
+    margin-top: 46px;
+}
+
+.edgt-page-not-found .edgt-error-page-title {
+    margin-top: 15px;
+    color: #fff;
+    font-family: Marcellus,sans-serif;
+    font-size: 100px;
+    font-weight: 400;
+    line-height: 1.05em;
+} 
+
+.edgt-page-not-found .edgt-404-separator {
+    margin-top: 20px;
+}
+
+
+.edgt-page-not-found .edgt-error-page-subtitle {
+    color: #fff;
+    max-width: 710px;
+    margin: 15px auto auto;
+    font-family: Marcellus,sans-serif;
+    font-size: 17px;
+    line-height: 1.53em;
+    letter-spacing: .2px;
+    font-weight: 400
+}
+
+
+.edgt-btn.edgt-btn-glow {
+    -webkit-transition: color .25s ease-out,background-color .25s ease-out,border-color .25s ease-out,box-shadow .25s ease-out;
+    -moz-transition: color .25s ease-out,background-color .25s ease-out,border-color .25s ease-out,box-shadow .25s ease-out;
+    transition: color .25s ease-out,background-color .25s ease-out,border-color .25s ease-out,box-shadow .25s ease-out;
+}
+.edgt-btn.edgt-btn-medium {
+    min-width: 145px;
+}
+.edgt-btn.edgt-btn-white-outline {
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: #fff;
+}
+.edgt-page-not-found .edgt-404-button {
+    margin-top: 31px;
+}
+.edgt-btn {
+    border-color: rgb(255, 255, 255);
+    display: inline-block;
+    position: relative;
+    outline: 0;
+    padding: 16px 56px 16px;
+    font-style: normal;
+    font-weight: 400;
+    font-family: Marcellus,sans-serif;
+    font-size: 15px;
+    line-height: 26px;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    -webkit-transition: color .3s ease-out,background-color .3s ease-out,border-color .3s ease-out;
+    -moz-transition: color .3s ease-out,background-color .3s ease-out,border-color .3s ease-out;
+    transition: color .3s ease-out,background-color .3s ease-out,border-color .3s ease-out;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+
+
+@media only screen and (max-width: 1200px) {
+    .edgt-container-inner,.edgt-grid,.edgt-grid-section .edgt-section-inner,.edgt-slider .carousel-inner .edgt-slider-content-outer {
+        width:950px
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .edgt-container-inner,.edgt-grid,.edgt-grid-section .edgt-section-inner,.edgt-slider .carousel-inner .edgt-slider-content-outer {
+        width:768px
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .edgt-container-inner,.edgt-grid,.edgt-grid-section .edgt-section-inner,.edgt-slider .carousel-inner .edgt-slider-content-outer {
+        width:600px
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .edgt-container-inner,.edgt-grid,.edgt-grid-section .edgt-section-inner,.edgt-slider .carousel-inner .edgt-slider-content-outer {
+        width:420px
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .edgt-container-inner,.edgt-grid,.edgt-grid-section .edgt-section-inner,.edgt-slider .carousel-inner .edgt-slider-content-outer {
+        width:300px
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .edgt-container-inner,.edgt-grid,.edgt-grid-section .edgt-section-inner,.edgt-slider .carousel-inner .edgt-slider-content-outer {
+        width:95%
+    }
+}
+@media only screen and (max-width: 1024px) {
+     .edgt-content {
+        margin-top:-143px!important;
+        padding-top: 143px;
+    }
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  
+
+    .edgt-error-page-title {
+        font-size: 40px
+    }
+
+    .edgt-404-image {
+        display: none
+    }
+}
+
+.error404 .edgt-content {
+    height: 100vh;
+    box-sizing: border-box
+}
+
+.error404 .edgt-content .edgt-content-inner {
+    height: 100%
+}
+
+.error404 .edgt-content .edgt-content-inner .edgt-404-page {
+    position: relative;
+    display: table;
+    height: 100%;
+    width: 100%
+}
+
+.error404 .edgt-content .edgt-content-inner .edgt-404-page .edgt-page-not-found {
+    position: relative;
+    display: table-cell;
+    height: 100%;
+    width: 100%;
+    vertical-align: middle
+}
+
+.edgt-content .edgt-content-inner>.edgt-container>.edgt-container-inner.edgt-404-page {
+    padding: 30px 0
+}
+
+.edgt-404-page {
+    background-color: #444;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center
+}
+
+.edgt-page-not-found {
+    text-align: center
+}
+
+.edgt-page-not-found .edgt-error-page-subtitle {
+    color: #fff;
+    max-width: 710px;
+    margin: 15px auto auto
+}
+
+.edgt-page-not-found .edgt-error-page-title {
+    margin-top: 15px;
+    color: #fff
+}
+
+.edgt-page-not-found .edgt-404-image {
+    margin-top: 46px
+}
+
+.edgt-page-not-found .edgt-404-separator {
+    margin-top: 20px
+}
+
+.edgt-page-not-found .edgt-404-button {
+    margin-top: 31px
+}
+
