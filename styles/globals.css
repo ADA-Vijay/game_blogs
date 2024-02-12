@@ -22,3 +22,16 @@ body{
   background-color: var(--bodyBg);
   font-family: var(--font-family);
 }
+
+.wp-block-image img{
+  height : 100% !important;
+  width: 100% !important;
+  overflow:hidden
+}
+
+
+.wp-block-uagb-image img{
+  height : 100% !important;
+  width: 100% !important;
+  overflow:hidden
+}

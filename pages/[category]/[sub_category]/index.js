@@ -1,0 +1,44 @@
+import React from 'react'
+import { useRouter } from 'next/router'
+import axios from 'axios'
+const index = () => {
+  const router = useRouter()
+  const {category,sub_category} = router.query
+  console.log("category : ", category)
+  console.log("subcategory :", sub_category)
+  return (
+    <div>Sub Category Page</div>
+  )
+}
+
+export default index
+
+
+
+// export async function getServerSideProps(context) {
+//   const { category, sub_category } = context.query;
+//   console.log("category:", category);
+//   console.log("subcategory:", sub_category);
+//   const ApiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+//   queryObj = query {
+//     query : `
+//     `
+//   }
+//   try{
+//     const data = await axios.post(ApiUrl,queryObj, {
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     })
+//     return {
+//       props: {
+//         category,
+//         sub_category,
+//       },
+//     };
+//   }catch(error){
+//     console.log("error while fetching th data")
+//   }
+  
+// }
