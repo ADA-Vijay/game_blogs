@@ -163,7 +163,7 @@ export default function Home({newdata}) {
               <div className={styles.latestContent}>
                 <div className={styles.titleName}>Latest</div>
                 <div className={styles.latestBox}>
-                {newdata.posts.nodes.map((card, index) => (
+                {/* {newdata.posts.nodes.map((card, index) => (
                   <>
                   <div className={styles.latestBoxItem}>
                   <h6>{card.title}</h6>
@@ -173,12 +173,12 @@ export default function Home({newdata}) {
                    
                   </>
                   
-                  ))}
-                  {latestData.map((card, index) => (
+                  ))} */}
+                  {newdata.posts.nodes.map((card, index) => (
                     <div className={styles.latestBoxItem} key={index}>
-                      <img className={styles.latestImg} src={card.imageUrl} />
-                      <div className={styles.latestInfo}>
-                        <h6>{card.bags}</h6>
+                      <img className={styles.latestImg} src={card.featuredImage.node.sourceUrl} />
+                      <div className={styles.latestInfo}> 
+                        <h6>{card.title}</h6>
                         <a href="#">{card.name}</a>
                         <h5>{card.activeDate}</h5>
                       </div>
@@ -225,6 +225,16 @@ export async function getServerSideProps({ context }) {
             postId
             title
             content
+            date
+            featuredImage {
+              node {
+                altText
+                slug
+                title
+                sourceUrl
+                srcSet
+              }
+            }
           }
         }
       }
