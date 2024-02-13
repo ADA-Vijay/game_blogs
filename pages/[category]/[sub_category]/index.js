@@ -1,6 +1,8 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
+import styles from "@/styles/Home.module.css";
+
 const index = ({resultData}) => {
   console.log("Result Data", resultData)
   const router = useRouter()
@@ -8,7 +10,27 @@ const index = ({resultData}) => {
   console.log("category : ", category)
   console.log("subcategory :", sub_category)
   return (
-    <div>Sub Category Page</div>
+    <div>
+     <div className={styles.heroCardWrap}>
+          <div className={styles.heroCardBody}>
+            <div className={styles.heroCardBox}>
+              {resultData && resultData.map((card, index) => (
+                <div key={index} className={styles.heroCardBoxItem}>
+                  <img
+                    src={card.jetpack_featured_media_url}
+                    alt="hero images"
+                    className={styles.heroCardBoxItemImg}
+                  />
+                  {/* <div className={styles.heroCardBoxItemInfo}>
+                    <h6 className={styles.heroCardBoxItemBags}>{card.bags}</h6>
+                    <h4 className={styles.heroCardBoxItemName}>{card.name}</h4>
+                  </div> */}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+    </div>
   )
 }
 
@@ -25,6 +47,7 @@ export async function getServerSideProps(context) {
 
   try{
     const data = await axios.post(ApiUrl+ "posts?slug=" +sub_category)
+    console.log("Data for Subcategory",data)
     return {
       props: {
         resultData : data

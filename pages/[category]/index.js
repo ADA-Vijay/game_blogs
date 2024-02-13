@@ -38,7 +38,9 @@ const Index = ({ data }) => {
 export default Index;
 
 export async function getServerSideProps(context) {
+
   const { category } = context.query;
+ 
   const ApiUrl = process.env.NEXT_PUBLIC_API_URL;
   console.log(ApiUrl)
   console.log("Category from getServerSideProps:", category);
