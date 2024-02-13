@@ -103,33 +103,33 @@ const trendingTopData = [
     activeDate: "arzan khan 2 months ago",
   },
 ];
-export default function Home() {
-  const [newdata,setNewData] = useState([])
+export default function Home({newdata}) {
+  // const [newdata,setNewData] = useState([])
 
 
-  const [category, setCategory] = useState({});
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-   console.log("API URL",apiUrl)
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // const [category, setCategory] = useState({});
+  // const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  //  console.log("API URL",apiUrl)
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(apiUrl + "posts?per_page=10&order=desc&orderby=date");
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await axios.get(apiUrl + "posts?per_page=10&order=desc&orderby=date");
 
-      const data = response.data;
-      console.log("Data : ", data)
+  //     const data = response.data;
+  //     console.log("Data : ", data)
 
-      if (data.errors) {
-        console.log("GraphQL Errors:", data.errors);
-      } else {
-        setNewData(data)
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  //     if (data.errors) {
+  //       console.log("GraphQL Errors:", data.errors);
+  //     } else {
+  //       setNewData(data)
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // };
 
 
   
