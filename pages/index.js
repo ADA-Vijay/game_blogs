@@ -6,6 +6,7 @@ import Footer from "../components/footer";
 import Container from "react-bootstrap/Container";
 import styles from "@/styles/Home.module.css";
 import axios from "axios";
+import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -104,6 +105,7 @@ const trendingTopData = [
   },
 ];
 export default function Home({newdata}) {
+  const router = useRouter()
   // const [newdata,setNewData] = useState([])
 
 
@@ -130,7 +132,17 @@ export default function Home({newdata}) {
   //     console.error("Error fetching data:", error);
   //   }
   // };
+  const ApiUrl = process.env.NEXT_PUBLIC_API_URL;
 
+  const redirectData = async()=>{
+  }
+  const Navigate = async(data)=>{
+      console.log(data)
+      router.push("/"+ data.title.rendered)
+      // const response = await axios.get(ApiUrl+ "categories/" + data.categories[0])
+      // console.log("new data", response)
+
+  }
 
   
   return (
@@ -200,7 +212,7 @@ export default function Home({newdata}) {
                   
                   ))} */}
                   {newdata.map((card, index) => (
-                    <div className={styles.latestBoxItem} key={index}>
+                    <div className={styles.latestBoxItem} key={index} onClick={()=>Navigate(card)}>
                       <img className={styles.latestImg} src={card.jetpack_featured_media_url} />
                       <div className={styles.latestInfo}> 
                         <h6>{card.title.rendered}</h6>
@@ -240,11 +252,9 @@ export default function Home({newdata}) {
 
 export async function getServerSideProps({ context }) {
   const ApiUrl = process.env.NEXT_PUBLIC_API_URL;
-  console.log(ApiUrl);
 
   try {
     const response = await axios.get(ApiUrl + "posts?per_page=10&order=desc&orderby=date");
-     console.log(response)
     const newdata = response.data;
 
     if (newdata) {

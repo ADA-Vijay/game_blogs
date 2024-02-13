@@ -7,10 +7,13 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import styles from "@/styles/Header.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+
 export default function Header() {
   const [category, setCategory] = useState({});
+  const [subCategory,setSubCategory] = useState([])
+  // const [saveCategory,setSaveCategory] = useState([])
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-
+  
   useEffect(() => {
     fetchData();
   }, []);
@@ -18,42 +21,35 @@ export default function Header() {
   const fetchData = async () => {
     try {
       const response = await axios.get(apiUrl + "categories");
-
+  
       const data = response.data;
-      console.log("Data : ", data)
-
+  
       if (data.errors) {
         console.log("GraphQL Errors:", data.errors);
       } else {
-        const uniqueCategories = data.data.categories.nodes.filter(
-          (category) => {
-            return !data.data.categories.nodes.some((otherCategory) => {
-              return (
-                otherCategory.children.nodes.length > 0 &&
-                otherCategory.children.nodes.some(
-                  (child) => child.categoryId === category.categoryId
-                )
-              );
-            });
+        const categoriesMap = new Map();
+        const subCategoriesMap = new Map();
+  
+        data.forEach((category) => {
+          if (category.parent === 0) {
+            categoriesMap.set(category.id, category);
+          } else {
+            if (!subCategoriesMap.has(category.parent)) {
+              subCategoriesMap.set(category.parent, []);
+            }
+            subCategoriesMap.get(category.parent).push(category);
           }
-        );
-
-        const uniqueResponse = {
-          ...data,
-          data: {
-            ...data.data,
-            categories: {
-              nodes: uniqueCategories,
-            },
-          },
-        };
-
-        setCategory(uniqueResponse.data.categories);
+        });
+  
+        setCategory(Array.from(categoriesMap.values()));
+        setSubCategory(subCategoriesMap);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+
+  
 
   return (
     <Navbar expand="lg" className={styles.headerWrap}>
@@ -63,28 +59,35 @@ export default function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            {category && category.nodes && category.nodes.length > 0
-              ? category.nodes.map((cat) => (
-                  <React.Fragment key={cat.categoryId}>
-                    {cat.children &&
-                    cat.children.nodes &&
-                    cat.children.nodes.length > 0 ? (
-                      <NavDropdown 
-                        title={cat.name}
-                        className={styles.headerDropdown}
-                      >
-                        {cat.children.nodes.map((sub) => (
-                          <NavDropdown.Item href={`/${cat.name}/${sub.name}`}>{sub.name}</NavDropdown.Item>
-                        ))}
-                      </NavDropdown>
-                    ) : (
-                      <Nav.Link href={cat.name === 'Home' ? '/' : `/${cat.name}`} className={styles.headerlink}>
+          {category && category.length > 0
+            ? category.map((cat) => (
+                <React.Fragment key={cat.id}>
+                  {subCategory.get(cat.id) && subCategory.get(cat.id).length > 0 && (
+                    <NavDropdown
+                      title={cat.name}
+                      className={styles.headerDropdown}
+                    >
+                      {subCategory.get(cat.id).map((sub) => (
+                        <NavDropdown.Item
+                          key={sub.id}
+                          href={`/${cat.name}/${sub.name}`}
+                        >
+                          {sub.name}
+                        </NavDropdown.Item>
+                      ))}
+                    </NavDropdown>
+                  )}
+                  {!subCategory.has(cat.id) && (
+                    <Nav.Link
+                      href={cat.name === "HOME" ? "/" : `/${cat.name}`}
+                      className={styles.headerlink}
+                    >
                       {cat.name}
                     </Nav.Link>
-                    )}
-                  </React.Fragment>
-                ))
-              : ""}
+                  )}
+                </React.Fragment>
+              ))
+            : ""}
 
             <div className={styles.extraHeaderWrap}>
               <div className={styles.searchHeaderWrap}>
@@ -127,33 +130,3 @@ export default function Header() {
   );
 }
 
-// export async function getServerSideProps(){
-//   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-//   const response = await axios.post(apiUrl, {
-//     query: `
-//       query {
-//         categories {
-//           nodes {
-//             categoryId
-//             name
-//             children {
-//               nodes {
-//                 categoryId
-//                 name
-//               }
-//             }
-//           }
-//         }
-//       }
-//     `,
-//   });
-
-//   const data = response.data;
-//   console.log('Data:', data);
-//   return {
-//     props: {
-//       categories: data.categories,
-//     },
-//   };
-
-// }
