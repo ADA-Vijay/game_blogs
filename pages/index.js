@@ -174,13 +174,13 @@ export default function Home({newdata}) {
                   </>
                   
                   ))} */}
-                  {newdata.posts.nodes.map((card, index) => (
+                  {newdata.map((card, index) => (
                     <div className={styles.latestBoxItem} key={index}>
-                      <img className={styles.latestImg} src={card.featuredImage.node.sourceUrl} />
+                      <img className={styles.latestImg} src={card.jetpack_featured_media_url} />
                       <div className={styles.latestInfo}> 
-                        <h6>{card.title}</h6>
-                        <a href="#">{card.name}</a>
-                        <h5>{card.activeDate}</h5>
+                        <h6>{card.title.rendered}</h6>
+                        {/* <a href="#">{card.name}</a> */}
+                        {/* <h5>{card.activeDate}</h5> */}
                       </div>
                     </div>
                   ))}
@@ -217,38 +217,10 @@ export async function getServerSideProps({ context }) {
   const ApiUrl = process.env.NEXT_PUBLIC_API_URL;
   console.log(ApiUrl);
 
-  const queryObj = {
-    query: `
-      query {
-        posts(where: {orderby: {field: DATE, order: DESC}}) {
-          nodes {
-            postId
-            title
-            content
-            date
-            featuredImage {
-              node {
-                altText
-                slug
-                title
-                sourceUrl
-                srcSet
-              }
-            }
-          }
-        }
-      }
-    `,
-  };
-
   try {
-    const response = await axios.post(ApiUrl, queryObj, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    const newdata = response.data.data;
+    const response = await axios.get(ApiUrl + "posts?per_page=10&order=desc&orderby=date");
+     console.log(response)
+    const newdata = response.data;
 
     if (newdata) {
       return { props: { newdata } };

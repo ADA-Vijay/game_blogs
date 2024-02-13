@@ -17,26 +17,10 @@ export default function Header() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.post(apiUrl, {
-        query: `
-          query {
-            categories {
-              nodes {
-                categoryId
-                name
-                children {
-                  nodes {
-                    categoryId
-                    name
-                  }
-                }
-              }
-            }
-          }
-        `,
-      });
+      const response = await axios.get(apiUrl + "categories");
 
       const data = response.data;
+      console.log("Data : ", data)
 
       if (data.errors) {
         console.log("GraphQL Errors:", data.errors);
