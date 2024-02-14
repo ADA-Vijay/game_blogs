@@ -37,24 +37,21 @@ const index = ({resultData}) => {
 export default index
 
 
-
 export async function getServerSideProps(context) {
   const { category, sub_category } = context.query;
-  console.log("category:", category);
-  console.log("subcategory:", sub_category);
   const ApiUrl = process.env.NEXT_PUBLIC_API_URL;
+  try {
+    const response = await axios.get(ApiUrl + "posts?slug=" + sub_category);
+    const { data } = response; 
 
-
-  try{
-    const data = await axios.post(ApiUrl+ "posts?slug=" +sub_category)
-    console.log("Data for Subcategory",data)
+    console.log("Data for Subcategory", data);
     return {
       props: {
-        resultData : data
+        resultData: data,
       },
     };
-  }catch(error){
-    console.log("error while fetching th data")
+  } catch (error) {
+    console.log("error while fetching the data", error);
   }
-  
 }
+

@@ -132,17 +132,32 @@ export default function Home({newdata}) {
   //     console.error("Error fetching data:", error);
   //   }
   // };
-  const ApiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-  const redirectData = async()=>{
-  }
-  const Navigate = async(data)=>{
-      console.log(data)
-      router.push("/"+ data.title.rendered)
-      // const response = await axios.get(ApiUrl+ "categories/" + data.categories[0])
-      // console.log("new data", response)
-
-  }
+  const Navigate = async (data) => {
+    console.log(data);
+  
+    const categoryArray = data._embedded['wp:term'][0];
+  
+    if (categoryArray && categoryArray.length > 0) {
+      const firstCategory = categoryArray[0];
+  
+      if (firstCategory.name) {
+        const categoryName = firstCategory.name;
+        const postTitle = data.title.rendered;
+  
+        if (categoryName && postTitle) {
+          router.push(`/${categoryName}/${postTitle}`);
+        } else {
+          console.error('Category name or post title is missing in the response.');
+        }
+      } else {
+        console.error('Category information not found in the response.');
+      }
+    } else {
+      console.error('No categories found for this post.');
+    }
+  };
+  
 
   
   return (
@@ -216,8 +231,8 @@ export default function Home({newdata}) {
                       <img className={styles.latestImg} src={card.jetpack_featured_media_url} />
                       <div className={styles.latestInfo}> 
                         <h6>{card.title.rendered}</h6>
-                        {/* <a href="#">{card.name}</a> */}
-                        {/* <h5>{card.activeDate}</h5> */}
+                        <a href="#">{card.title.rendered}</a> 
+                         <h5 dangerouslySetInnerHTML={{__html:card.excerpt.rendered}}></h5> 
                       </div>
                     </div>
                   ))}
@@ -254,7 +269,7 @@ export async function getServerSideProps({ context }) {
   const ApiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   try {
-    const response = await axios.get(ApiUrl + "posts?per_page=10&order=desc&orderby=date");
+    const response = await axios.get(ApiUrl + "posts?per_page=10&order=desc&orderby=date&_embed=1");
     const newdata = response.data;
 
     if (newdata) {
