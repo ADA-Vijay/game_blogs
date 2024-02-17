@@ -12,6 +12,7 @@ const index = ({ data }) => {
       <div className={styles.heroCardWrap}>
         <div className={styles.heroCardBody}>
           <div className={styles.heroCardBox}>
+
             {data && data.length > 0 ? (
               <>
                 <div key={index} className={styles.latestBoxItem}> 
@@ -25,7 +26,7 @@ const index = ({ data }) => {
                       {data[0].title.rendered}
                     </h6>
                     {/* <a href="#">{card.name}</a> */}
-                    <h5 dangerouslySetInnerHTML={{__html:data[0].excerpt.rendered}}></h5> 
+                    <h5 className="description" dangerouslySetInnerHTML={{__html:data[0].excerpt.rendered}}></h5> 
                   </div>
                 </div>
               </>
