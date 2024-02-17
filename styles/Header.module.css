@@ -71,3 +71,8 @@
 .headerDropdown{
     margin-right: 15px;
 }
+
+
+.navLink{
+    text-decoration: none !important;
+}

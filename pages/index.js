@@ -8,6 +8,7 @@ import styles from "@/styles/Home.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
 
 const heroData = [
@@ -104,47 +105,38 @@ const trendingTopData = [
     activeDate: "arzan khan 2 months ago",
   },
 ];
-export default function Home({newdata}) {
-  const router = useRouter()
-  // const [newdata,setNewData] = useState([])
 
+export default function Home({ newdata, bannerData }) {
+  const router = useRouter();
+  console.log("Banner Response : ", bannerData);
 
-  // const [category, setCategory] = useState({});
-  // const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  //  console.log("API URL",apiUrl)
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  const Navigate = async (data) => {
+    console.log(data);
 
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await axios.get(apiUrl + "posts?per_page=10&order=desc&orderby=date");
+    const categoryArray = data._embedded["wp:term"][0];
 
-  //     const data = response.data;
-  //     console.log("Data : ", data)
+    if (categoryArray && categoryArray.length > 0) {
+      const firstCategory = categoryArray[0];
 
-  //     if (data.errors) {
-  //       console.log("GraphQL Errors:", data.errors);
-  //     } else {
-  //       setNewData(data)
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   }
-  // };
-  const ApiUrl = process.env.NEXT_PUBLIC_API_URL;
+      if (firstCategory.name) {
+        const categoryName = firstCategory.slug;
+        const postTitle = data.slug;
 
-  const redirectData = async()=>{
-  }
-  const Navigate = async(data)=>{
-      console.log(data)
-      router.push("/"+ data.title.rendered)
-      // const response = await axios.get(ApiUrl+ "categories/" + data.categories[0])
-      // console.log("new data", response)
+        if (categoryName && postTitle) {
+          router.push(`/${categoryName}/${postTitle}`);
+        } else {
+          console.error(
+            "Category name or post title is missing in the response."
+          );
+        }
+      } else {
+        console.error("Category information not found in the response.");
+      }
+    } else {
+      console.error("No categories found for this post.");
+    }
+  };
 
-  }
-
-  
   return (
     <>
       <Head>
@@ -162,18 +154,26 @@ export default function Home({newdata}) {
         <div className={styles.heroCardWrap}>
           <div className={styles.heroCardBody}>
             <div className={styles.heroCardBox}>
-              {heroData.map((card, index) => (
-                <div key={index} className={styles.heroCardBoxItem}>
-                  <img
-                    src={card.imageUrl}
-                    alt="hero images"
-                    className={styles.heroCardBoxItemImg}
-                  />
-                  <div className={styles.heroCardBoxItemInfo}>
-                    <h6 className={styles.heroCardBoxItemBags}>{card.bags}</h6>
-                    <h4 className={styles.heroCardBoxItemName}>{card.name}</h4>
+              {bannerData.map((card, index) => (
+                <Link
+                  href={`${card._embedded["wp:term"][0][0].slug}/${card.slug}`}
+                >
+                  <div key={index} className={styles.heroCardBoxItem}>
+                    <img
+                      src={card.jetpack_featured_media_url}
+                      alt="hero images"
+                      className={styles.heroCardBoxItemImg}
+                    />
+                    <div className={styles.heroCardBoxItemInfo}>
+                      <h6 className={styles.heroCardBoxItemBags}>
+                        {card._embedded["wp:term"][0][0].name}
+                      </h6>
+                      <h4 className={styles.heroCardBoxItemName}>
+                        {card.title.rendered}
+                      </h4>
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
@@ -200,7 +200,7 @@ export default function Home({newdata}) {
               <div className={styles.latestContent}>
                 <div className={styles.titleName}>Latest</div>
                 <div className={styles.latestBox}>
-                {/* {newdata.posts.nodes.map((card, index) => (
+                  {/* {newdata.posts.nodes.map((card, index) => (
                   <>
                   <div className={styles.latestBoxItem}>
                   <h6>{card.title}</h6>
@@ -212,12 +212,19 @@ export default function Home({newdata}) {
                   
                   ))} */}
                   {newdata.map((card, index) => (
-                    <div className={styles.latestBoxItem} key={index} onClick={()=>Navigate(card)}>
-                      <img className={styles.latestImg} src={card.jetpack_featured_media_url} />
-                      <div className={styles.latestInfo}> 
-                        <h6>{card.title.rendered}</h6>
-                        {/* <a href="#">{card.name}</a> */}
-                        {/* <h5>{card.activeDate}</h5> */}
+                    <div
+                      className={styles.latestBoxItem}
+                      key={index}
+                      onClick={() => Navigate(card)}
+                    >
+                      <img
+                        className={styles.latestImg}
+                        src={card.jetpack_featured_media_url}
+                      />
+                      <div className={styles.latestInfo}>
+                        <h6>{card._embedded["wp:term"][0][0].name}</h6>
+                         <a href="#">{card.title.rendered}</a> 
+                         <h5 dangerouslySetInnerHTML={{__html:card.excerpt.rendered}}></h5>
                       </div>
                     </div>
                   ))}
@@ -252,16 +259,22 @@ export default function Home({newdata}) {
 
 export async function getServerSideProps({ context }) {
   const ApiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const bannerId = 606508198;
 
   try {
-    const response = await axios.get(ApiUrl + "posts?per_page=10&order=desc&orderby=date");
+    const bannerResponse = await axios.get(
+      ApiUrl + "posts?tags=606508198&_embed&per_page=4&orderby=date&order=desc"
+    );
+    const bannerData = bannerResponse.data;
+    const response = await axios.get(
+      ApiUrl + "posts?per_page=10&order=desc&orderby=date&_embed=1"
+    );
     const newdata = response.data;
 
     if (newdata) {
-      return { props: { newdata } };
+      return { props: { newdata, bannerData } };
     }
   } catch (error) {
     console.error("Error While Fetching the Data :", error);
   }
 }
-
