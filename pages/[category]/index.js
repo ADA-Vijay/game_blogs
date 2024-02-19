@@ -88,9 +88,14 @@ const Index = ({ initialData }) => {
   const [loading, setLoading] = useState(false);
   const [hasMoreData, setHasMoreData] = useState(true);
   const router = useRouter();
-
+  useEffect(() => {
+    setData(initialData);
+    setPage(1)
+    setLoading(false);
+    setHasMoreData(true);
+  }, [initialData]);
   const { category } = router.query; 
-
+  
   useEffect(() => {
     const handleScroll = () => {
       if (
@@ -146,7 +151,7 @@ const Index = ({ initialData }) => {
       <div className={styles.heroCardWrap}>
         <div className={styles.heroCardBody}>
           <div className={styles.heroCardBox}>
-            {data &&
+            {data && data.length > 0 ?(
               data.map((card, index) => (
                 <Link href={`/${category}/${card.slug}`} key={index}>
                   <div className={styles.heroCardBoxItem}>
@@ -157,7 +162,11 @@ const Index = ({ initialData }) => {
                     />
                   </div>
                 </Link>
-              ))}
+              )) 
+            ):( <div className={styles.heroCardBoxItem}>
+              No data found on this category
+            </div>)
+              }
           </div>
         </div>
       </div>
@@ -169,7 +178,7 @@ export default Index;
 
 export async function getServerSideProps(context) {
   const { category } = context.query;
-
+   console.log("category choosen by the user",category)
   if (!category) {
     return {
       props: { initialData: null },
@@ -182,23 +191,33 @@ export async function getServerSideProps(context) {
     const categoryResponse = await axios.get(
       `${ApiUrl}categories?slug=${category}`
     );
-
+    console.log("Category Response from the server ", categoryResponse)
     const categoryId = categoryResponse.data[0]?.id;
-
+    
     if (!categoryId) {
       return {
-        props: { initialData: null },
+        props: { initialData: [] },
       };
     }
 
     const response = await axios.get(
       `${ApiUrl}posts?categories=${categoryId}&per_page=10`
-    );
+    ); 
+    // if(response.pageProps.initialData){
+    //   console.log("Page props comes")
+    // }
     const initialData = response.data;
-
-    return {
-      props: { initialData },
-    };
+    console.log("response for the categoryid ",initialData)
+     if(initialData.length > 0){
+      return {
+        props: { initialData :initialData  },
+      };
+     }else{
+      return {
+        props: { initialData :initialData },
+      };
+     }
+  
   } catch (error) {
     console.error("Error while fetching the data", error);
     return {
