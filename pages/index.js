@@ -118,7 +118,6 @@ export default function Home({ newdata, bannerData }) {
     if (categoryArray && categoryArray.length > 0) {
       const firstCategory = categoryArray[0];
 
-<<<<<<< HEAD
   //     if (data.errors) {
   //       console.log("GraphQL Errors:", data.errors);
   //     } else {
@@ -156,7 +155,7 @@ export default function Home({ newdata, bannerData }) {
   
 
   
-=======
+
       if (firstCategory.name) {
         const categoryName = firstCategory.slug;
         const postTitle = data.slug;
@@ -176,7 +175,6 @@ export default function Home({ newdata, bannerData }) {
     }
   };
 
->>>>>>> main
   return (
     <>
       <Head>
@@ -252,14 +250,6 @@ export default function Home({ newdata, bannerData }) {
                   
                   ))} */}
                   {newdata.map((card, index) => (
-<<<<<<< HEAD
-                    <div className={styles.latestBoxItem} key={index} onClick={()=>Navigate(card)}>
-                      <img className={styles.latestImg} src={card.jetpack_featured_media_url} />
-                      <div className={styles.latestInfo}> 
-                        <h6>{card.title.rendered}</h6>
-                        <a href="#">{card.title.rendered}</a> 
-                         <h5 dangerouslySetInnerHTML={{__html:card.excerpt.rendered}}></h5> 
-=======
                     <div
                       className={styles.latestBoxItem}
                       key={index}
@@ -273,7 +263,6 @@ export default function Home({ newdata, bannerData }) {
                         <h6>{card._embedded["wp:term"][0][0].name}</h6>
                          <a href="#">{card.title.rendered}</a> 
                          <h5 className="description" dangerouslySetInnerHTML={{__html:card.excerpt.rendered}}></h5>
->>>>>>> main
                       </div>
                     </div>
                   ))}
@@ -311,9 +300,6 @@ export async function getServerSideProps({ context }) {
   const bannerId = 606508198;
 
   try {
-<<<<<<< HEAD
-    const response = await axios.get(ApiUrl + "posts?per_page=10&order=desc&orderby=date&_embed=1");
-=======
     const bannerResponse = await axios.get(
       ApiUrl + "posts?tags=606508198&_embed&per_page=4&orderby=date&order=desc"
     );
@@ -321,7 +307,6 @@ export async function getServerSideProps({ context }) {
     const response = await axios.get(
       ApiUrl + "posts?per_page=10&order=desc&orderby=date&_embed=1"
     );
->>>>>>> main
     const newdata = response.data;
 
     if (newdata) {

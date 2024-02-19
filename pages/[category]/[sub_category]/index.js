@@ -50,28 +50,12 @@ const index = ({ data }) => {
   );
 };
 
-<<<<<<< HEAD
-=======
 export default index;
 
->>>>>>> main
 export async function getServerSideProps(context) {
   const { category, sub_category } = context.query;
   const ApiUrl = process.env.NEXT_PUBLIC_API_URL;
   try {
-<<<<<<< HEAD
-    const response = await axios.get(ApiUrl + "posts?slug=" + sub_category);
-    const { data } = response; 
-
-    console.log("Data for Subcategory", data);
-    return {
-      props: {
-        resultData: data,
-      },
-    };
-  } catch (error) {
-    console.log("error while fetching the data", error);
-=======
     const response = await axios.get(ApiUrl + `posts?slug=${sub_category}`);
     const data = response.data;
 
@@ -87,7 +71,6 @@ export async function getServerSideProps(context) {
         error: true,
       },
     };
->>>>>>> main
   }
 }
 
