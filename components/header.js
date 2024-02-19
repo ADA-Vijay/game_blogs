@@ -7,13 +7,13 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import styles from "@/styles/Header.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import Link from "next/link";
 export default function Header() {
   const [category, setCategory] = useState({});
-  const [subCategory,setSubCategory] = useState([])
+  const [subCategory, setSubCategory] = useState([]);
   // const [saveCategory,setSaveCategory] = useState([])
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -21,15 +21,15 @@ export default function Header() {
   const fetchData = async () => {
     try {
       const response = await axios.get(apiUrl + "categories");
-  
+
       const data = response.data;
-  
+
       if (data.errors) {
         console.log("GraphQL Errors:", data.errors);
       } else {
         const categoriesMap = new Map();
         const subCategoriesMap = new Map();
-  
+
         data.forEach((category) => {
           if (category.parent === 0) {
             categoriesMap.set(category.id, category);
@@ -40,7 +40,7 @@ export default function Header() {
             subCategoriesMap.get(category.parent).push(category);
           }
         });
-  
+
         setCategory(Array.from(categoriesMap.values()));
         setSubCategory(subCategoriesMap);
       }
@@ -48,8 +48,6 @@ export default function Header() {
       console.error("Error fetching data:", error);
     }
   };
-
-  
 
   return (
     <Navbar expand="lg" className={styles.headerWrap}>
@@ -59,35 +57,37 @@ export default function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-          {category && category.length > 0
-            ? category.map((cat) => (
-                <React.Fragment key={cat.id}>
-                  {subCategory.get(cat.id) && subCategory.get(cat.id).length > 0 && (
-                    <NavDropdown
-                      title={cat.name}
-                      className={styles.headerDropdown}
-                    >
-                      {subCategory.get(cat.id).map((sub) => (
-                        <NavDropdown.Item
-                          key={sub.id}
-                          href={`/${cat.name}/${sub.name}`}
+            {category && category.length > 0
+              ? category.map((cat) => (
+                  <React.Fragment key={cat.id}>
+                    {subCategory.get(cat.id) &&
+                      subCategory.get(cat.id).length > 0 && (
+                        <NavDropdown
+                          title={cat.name}
+                          className={styles.headerDropdown}
                         >
-                          {sub.name}
-                        </NavDropdown.Item>
-                      ))}
-                    </NavDropdown>
-                  )}
-                  {!subCategory.has(cat.id) && (
-                    <Nav.Link
-                      href={cat.name === "HOME" ? "/" : `/${cat.name}`}
-                      className={styles.headerlink}
-                    >
-                      {cat.name}
-                    </Nav.Link>
-                  )}
-                </React.Fragment>
-              ))
-            : ""}
+                          {subCategory.get(cat.id).map((sub) => (
+                            <NavDropdown.Item>
+                            <Link key={sub.id} href={`/${sub.slug}`} className={`${styles.navLink} ${styles.headerlink}`}>
+                              {sub.name}
+                            </Link>
+                          </NavDropdown.Item>                          
+                          ))}
+                        </NavDropdown>
+                      )}
+                    {!subCategory.has(cat.id) && (
+                      <Nav.Link>
+                        <Link
+                          href={cat.slug === "home" ? "/" : `/${cat.slug}`}
+                          className={`${styles.navLink} ${styles.headerlink}`}
+                        >
+                          {cat.name}
+                        </Link>
+                      </Nav.Link>
+                    )}
+                  </React.Fragment>
+                ))
+              : ""}
 
             <div className={styles.extraHeaderWrap}>
               <div className={styles.searchHeaderWrap}>
@@ -129,4 +129,3 @@ export default function Header() {
     </Navbar>
   );
 }
-
