@@ -87,7 +87,9 @@ const Index = ({ initialData }) => {
       setLoading(false);
     }
   };
-  
+   const redirect = (card)=>{
+    router.push(`/${category}/${card.slug}`)
+   }
 
   return (
     <div>
@@ -96,10 +98,8 @@ const Index = ({ initialData }) => {
           <div className={styles.heroCardBox}>
             {data && data.length > 0 ?(
               data.map((card, index) => (
-                <Link href={`/${category}/${card.slug}`} key={index}>
-                  <div className={styles.heroCardBoxItem} dangerouslySetInnerHTML={{__html:card.content.rendered}}>           
+                  <div className={styles.heroCardBoxItem} dangerouslySetInnerHTML={{__html:card.content.rendered}} onClick={()=>redirect(card)}>
                   </div>
-                </Link>
               )) 
             ):( <div className={styles.heroCardBoxItem}>
               No data found on this category
