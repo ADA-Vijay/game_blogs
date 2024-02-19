@@ -52,8 +52,8 @@ export default function Header() {
   return (
     <Navbar expand="lg" className={styles.headerWrap}>
       <Container>
-        <Navbar.Brand href="#home">Logo</Navbar.Brand>
-        <Navbar.Brand href="#home">Gamewitted</Navbar.Brand>
+        <Navbar.Brand href="/">Logo</Navbar.Brand>
+        <Navbar.Brand href="/">Gamewitted</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
