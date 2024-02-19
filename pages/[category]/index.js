@@ -97,12 +97,7 @@ const Index = ({ initialData }) => {
             {data && data.length > 0 ?(
               data.map((card, index) => (
                 <Link href={`/${category}/${card.slug}`} key={index}>
-                  <div className={styles.heroCardBoxItem}>
-                    <img
-                      src={card.jetpack_featured_media_url}
-                      alt="hero images"
-                      className={styles.heroCardBoxItemImg}
-                    />
+                  <div className={styles.heroCardBoxItem} dangerouslySetInnerHTML={{__html:card.content.rendered}}>           
                   </div>
                 </Link>
               )) 
