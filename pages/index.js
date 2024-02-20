@@ -131,7 +131,6 @@ export default function Home({ newdata, bannerData }) {
       // };
 
       const Navigate = async (data) => {
-        console.log(data);
 
         const categoryArray = data._embedded["wp:term"][0];
 
@@ -196,7 +195,11 @@ export default function Home({ newdata, bannerData }) {
       />
       <main className="">
         {/* <Header></Header> */}
-        <HeroBanner bannerData={bannerData}></HeroBanner>
+        {
+         bannerData && bannerData.length > 0 && (
+            <HeroBanner bannerData={bannerData}></HeroBanner>
+          )
+        }
         <div className={styles.promoWrap}>
           <Container>
             <div className={styles.promoBody}>
