@@ -14,7 +14,7 @@ import axios from "axios";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 import Container from "react-bootstrap/Container";
-import HeroBanner from "../../components/HeroBanner"
+import HeroBanner from "../../components/heroBanner"
 
 
 const trendingTopData = [
@@ -135,6 +135,7 @@ const Index = ({ initialData }) => {
       <div className={styles.latestWrap}>
         <Container>
           <div className={styles.latestBody}>
+            <HeroBanner></HeroBanner>
             <div className={styles.latestContent}>
               {/* <div className={styles.titleName}>Latest</div> */}
                 <div className={styles.latestBox}>
