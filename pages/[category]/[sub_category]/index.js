@@ -15,8 +15,8 @@ const index = ({ data }) => {
 
             {data && data.length > 0 ? (
               <>
-                <div key={index} className={styles.latestBoxItem}> 
-                  <img
+                <div key={index} className={styles.latestBoxItem} dangerouslySetInnerHTML={{__html:data[0].content.rendered}}> 
+                  {/* <img
                     src={data[0].jetpack_featured_media_url}
                     alt="hero images"
                     className={styles.latestImg}
@@ -25,9 +25,9 @@ const index = ({ data }) => {
                     <h6 className={styles.heroCardBoxItemBags}>
                       {data[0].title.rendered}
                     </h6>
-                    {/* <a href="#">{card.name}</a> */}
+                     <a href="#">{card.name}</a> 
                     <h5 className="description" dangerouslySetInnerHTML={{__html:data[0].excerpt.rendered}}></h5> 
-                  </div>
+                  </div> */}
                 </div>
               </>
             ) : (
