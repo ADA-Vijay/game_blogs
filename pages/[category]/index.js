@@ -13,6 +13,8 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
+import Container from "react-bootstrap/Container";
+import HeroBanner from "../../components/HeroBanner"
 
 const Index = ({ initialData }) => {
   const [data, setData] = useState(initialData);
@@ -94,19 +96,21 @@ const Index = ({ initialData }) => {
   return (
     <div>
       <div className={styles.heroCardWrap}>
-        <div className={styles.heroCardBody}>
-          <div className={styles.heroCardBox}>
-            {data && data.length > 0 ?(
-              data.map((card, index) => (
-                  <div className={styles.heroCardBoxItem} dangerouslySetInnerHTML={{__html:card.content.rendered}} onClick={()=>redirect(card)}>
-                  </div>
-              )) 
-            ):( <div className={styles.heroCardBoxItem}>
-              No data found on this category
-            </div>)
-              }
+        <Container>
+          <div className={styles.heroCardBody}>
+            <div className={styles.heroCardBox}>
+              {data && data.length > 0 ?(
+                data.map((card, index) => (
+                    <div className={styles.heroCardBoxItem} dangerouslySetInnerHTML={{__html:card.content.rendered}} onClick={()=>redirect(card)}>
+                    </div>
+                )) 
+              ):( <div className={styles.heroCardBoxItem}>
+                No data found on this category
+              </div>)
+                }
+            </div>
           </div>
-        </div>
+        </Container>
       </div>
     </div>
   );

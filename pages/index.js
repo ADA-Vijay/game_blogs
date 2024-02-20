@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import HeroBanner from "../components/HeroBanner"
 import Container from "react-bootstrap/Container";
 import styles from "@/styles/Home.module.css";
 import axios from "axios";
@@ -195,33 +196,7 @@ export default function Home({ newdata, bannerData }) {
       />
       <main className="">
         {/* <Header></Header> */}
-        <div className={styles.heroCardWrap}>
-          <div className={styles.heroCardBody}>
-            <div className={styles.heroCardBox}>
-              {bannerData.map((card, index) => (
-                <Link
-                  href={`${card._embedded["wp:term"][0][0].slug}/${card.slug}`}
-                >
-                  <div key={index} className={styles.heroCardBoxItem}>
-                    <img
-                      src={card.jetpack_featured_media_url}
-                      alt="hero images"
-                      className={styles.heroCardBoxItemImg}
-                    />
-                    <div className={styles.heroCardBoxItemInfo}>
-                      <h6 className={styles.heroCardBoxItemBags}>
-                        {card._embedded["wp:term"][0][0].name}
-                      </h6>
-                      <h4 className={styles.heroCardBoxItemName}>
-                        {card.title.rendered}
-                      </h4>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
+        <HeroBanner bannerData={bannerData}></HeroBanner>
         <div className={styles.promoWrap}>
           <Container>
             <div className={styles.promoBody}>
