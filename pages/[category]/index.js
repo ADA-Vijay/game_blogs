@@ -13,6 +13,7 @@ import axios from "axios";
 import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 import HeroBanner from "@/components/heroBanner";
+import { Container } from "react-bootstrap";
 const Index = ({ initialData, bannerData }) => {
   const [data, setData] = useState(initialData);
   const [page, setPage] = useState(1);
@@ -26,6 +27,24 @@ const Index = ({ initialData, bannerData }) => {
     setHasMoreData(true);
   }, [initialData]);
   const { category } = router.query;
+  const trendingTopData = [
+    {
+      name: "Palworld Guide: How to Fain Your Base",
+      activeDate: "arzan khan 2 months ago",
+    },
+    {
+      name: "Genshin Impact 4.4: All Things You Need to Know",
+      activeDate: "arzan khan 2 months ago",
+    },
+    {
+      name: "Destiny 2 Players Are Shocked with the New Character",
+      activeDate: "arzan khan 2 months ago",
+    },
+    {
+      name: "Keanu Reeves Cameo in the Newest Cyberpunk Update",
+      activeDate: "arzan khan 2 months ago",
+    },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -98,28 +117,56 @@ const Index = ({ initialData, bannerData }) => {
 
   return (
     <div>
-      {bannerData &&
-        bannerData.length >
-          0 && (<HeroBanner bannerData={bannerData}></HeroBanner>)}
-      <div className={styles.heroCardWrap}>
-        <div className={styles.heroCardBody}>
-          <div className={styles.heroCardBox}>
-            {data && data.length > 0 ? (
-              data.map((card, index) => (
-                <div
-                  className={styles.heroCardBoxItem}
-                  dangerouslySetInnerHTML={{ __html: card.content.rendered }}
-                  onClick={() => redirect(card)}
-                ></div>
-              ))
-            ) : (
-              <div className={styles.heroCardBoxItem}>
-                No data found on this category
-              </div>
+      <div className={styles.latestWrap}>
+        <Container>
+        {bannerData && bannerData.length > 0 && (
+              <HeroBanner bannerData={bannerData}></HeroBanner>
             )}
+          <div className={styles.latestBody}>
+           
+            <div className={styles.latestContent}>
+              {/* <div className={styles.titleName}>Latest</div> */}
+              <div className={styles.latestBox}>
+                {data && data.length > 0 ? (
+                  data.map((card, index) => (
+                    <div
+                      className={` ${styles.subListingsItem}`}
+                      dangerouslySetInnerHTML={{
+                        __html: card.content.rendered,
+                      }}
+                      onClick={() => redirect(card)}
+                    ></div>
+                  ))
+                ) : (
+                  <div className={styles.heroCardBoxItem}>
+                    No data found on this category
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className={styles.trendingTopWrap}>
+              <div>
+                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR4El1B5cOf9EjkuWgq4J_2RBIjo4jmzznJ8_3aMgezV3h3DJpE" />
+              </div>
+              <div className={styles.trendingTopHead}>
+                <div className={styles.trendingTopTitle}>trending topics</div>
+                <div className={styles.trendingTopBody}>
+                  <ul>
+                    {trendingTopData.map((card, index) => (
+                      <li key={index}>
+                        <h4>{card.name}</h4>
+                        <p>{card.activeDate}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        </Container>
       </div>
+
+    
     </div>
   );
 };
