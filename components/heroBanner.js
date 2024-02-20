@@ -1,5 +1,5 @@
 import styles from "@/styles/Home.module.css";
-
+import Link from "next/link";
 function HeroBanner({bannerData}) {
   return (
     <div className={styles.heroCardWrap}>
