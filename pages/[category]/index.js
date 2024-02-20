@@ -16,6 +16,26 @@ import Link from "next/link";
 import Container from "react-bootstrap/Container";
 import HeroBanner from "../../components/HeroBanner"
 
+
+const trendingTopData = [
+  {
+    name: "Palworld Guide: How to Fain Your Base",
+    activeDate: "arzan khan 2 months ago",
+  },
+  {
+    name: "Genshin Impact 4.4: All Things You Need to Know",
+    activeDate: "arzan khan 2 months ago",
+  },
+  {
+    name: "Destiny 2 Players Are Shocked with the New Character",
+    activeDate: "arzan khan 2 months ago",
+  },
+  {
+    name: "Keanu Reeves Cameo in the Newest Cyberpunk Update",
+    activeDate: "arzan khan 2 months ago",
+  },
+];
+
 const Index = ({ initialData }) => {
   const [data, setData] = useState(initialData);
   const [page, setPage] = useState(1);
@@ -95,7 +115,7 @@ const Index = ({ initialData }) => {
 
   return (
     <div>
-      <div className={styles.heroCardWrap}>
+      {/* <div className={styles.heroCardWrap}>
         <Container>
           <div className={styles.heroCardBody}>
             <div className={styles.heroCardBox}>
@@ -108,6 +128,66 @@ const Index = ({ initialData }) => {
                 No data found on this category
               </div>)
                 }
+            </div>
+          </div>
+        </Container>
+      </div> */}
+      <div className={styles.latestWrap}>
+        <Container>
+          <div className={styles.latestBody}>
+            <div className={styles.latestContent}>
+              {/* <div className={styles.titleName}>Latest</div> */}
+                <div className={styles.latestBox}>
+                  {data && data.length > 0 ?(
+                    data.map((card, index) => (
+                        <div className={styles.subListingsItem} dangerouslySetInnerHTML={{__html:card.content.rendered}} onClick={()=>redirect(card)}>
+                        </div>
+                    )) 
+                  ):( <div className={styles.heroCardBoxItem}>
+                    No data found on this category
+                  </div>)
+                  }
+                {/* {newdata.map((card, index) => (
+                  <div
+                    className={styles.latestBoxItem}
+                    key={index}
+                    onClick={() => Navigate(card)}
+                  >
+                    <img
+                      className={styles.latestImg}
+                      src={card.jetpack_featured_media_url}
+                    />
+                    <div className={styles.latestInfo}>
+                      <h6>{card._embedded["wp:term"][0][0].name}</h6>
+                      <a href="#">{card.title.rendered}</a>
+                      <h5
+                        className="description"
+                        dangerouslySetInnerHTML={{
+                          __html: card.excerpt.rendered,
+                        }}
+                      ></h5>
+                    </div>
+                  </div>
+                ))} */}
+              </div>
+            </div>
+            <div className={styles.trendingTopWrap}>
+              <div>
+                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR4El1B5cOf9EjkuWgq4J_2RBIjo4jmzznJ8_3aMgezV3h3DJpE" />
+              </div>
+              <div className={styles.trendingTopHead}>
+                <div className={styles.trendingTopTitle}>trending topics</div>
+                <div className={styles.trendingTopBody}>
+                  <ul>
+                    {trendingTopData.map((card, index) => (
+                      <li key={index}>
+                        <h4>{card.name}</h4>
+                        <p>{card.activeDate}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </Container>

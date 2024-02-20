@@ -38,7 +38,7 @@ const index = ({ data }) => {
                 <div className={styles.latestBox}>
                   {data && data.length > 0 ? (
                     <>
-                      <div key={index} className={styles.latestBoxItem} dangerouslySetInnerHTML={{__html:data[0].content.rendered}}> 
+                      <div key={index} className={styles.subListingDetailsItem} dangerouslySetInnerHTML={{__html:data[0].content.rendered}}> 
                       </div>
                     </>
                   ) : (

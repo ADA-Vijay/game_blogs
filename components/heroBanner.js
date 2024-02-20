@@ -1,6 +1,6 @@
 import styles from "@/styles/Home.module.css";
 
-function HeroBanner(bannerData) {
+function HeroBanner({bannerData}) {
   return (
     <div className={styles.heroCardWrap}>
           <div className={styles.heroCardBody}>
