@@ -185,7 +185,7 @@ export default function Home({ newdata, bannerData }) {
           description: "Ashgamewitted",
           images: [
             {
-              // url: newdata[0].jetpack_featured_media_url,
+               url: bannerData[0].jetpack_featured_media_url,
               width: 800,
               height: 600,
               alt: "Alt",
