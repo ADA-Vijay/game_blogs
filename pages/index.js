@@ -236,7 +236,7 @@ export default function Home({ newdata, bannerData }) {
                       />
                       <div className={styles.latestInfo}>
                         <h6>{card._embedded["wp:term"][0][0].name}</h6>
-                        <a href="#">{card.title.rendered}</a>
+                        <a dangerouslySetInnerHTML={{__html:card.title.rendered}}></a>
                         <h5
                           className="description"
                           dangerouslySetInnerHTML={{
