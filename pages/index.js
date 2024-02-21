@@ -185,7 +185,7 @@ export default function Home({ newdata, bannerData }) {
           description: "Ashgamewitted",
           images: [
             {
-               url: bannerData[0].jetpack_featured_media_url,
+              url: bannerData[0].jetpack_featured_media_url,
               width: 800,
               height: 600,
               alt: "Alt",
@@ -288,7 +288,7 @@ export async function getServerSideProps({ context }) {
     const getDataByTag = await axios.get(ApiUrl + "")
     const newdata = response.data;
 
-    if (newdata) {
+    if (newdata && bannerData) {
       return { props: { newdata, bannerData } };
     }
   } catch (error) {
