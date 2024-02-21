@@ -179,7 +179,7 @@ export default function Home({ newdata, bannerData }) {
     <>
       <NextSeo
         title="Home"
-        description={JSON.stringify(newdata)}
+        description={JSON.stringify(bannerData)}
         openGraph={{
           title: "Home",
           description: "Ashgamewitted",
@@ -222,17 +222,6 @@ export default function Home({ newdata, bannerData }) {
               <div className={styles.latestContent}>
                 <div className={styles.titleName}>Latest</div>
                 <div className={styles.latestBox}>
-                  {/* {newdata.posts.nodes.map((card, index) => (
-                  <>
-                  <div className={styles.latestBoxItem}>
-                  <h6>{card.title}</h6>
-                    <div key={index} dangerouslySetInnerHTML={{__html: card.content}}>
-                    </div>
-                  </div>
-                   
-                  </>
-                  
-                  ))} */}
                   {newdata.map((card, index) => (
                     <div
                       className={styles.latestBoxItem}
@@ -287,7 +276,6 @@ export default function Home({ newdata, bannerData }) {
 export async function getServerSideProps({ context }) {
   const ApiUrl = process.env.NEXT_PUBLIC_API_URL;
   const bannerId = 606508198;
-
   try {
     const bannerResponse = await axios.get(
       ApiUrl + "posts?tags=606508198&_embed&per_page=4&orderby=date&order=desc"
