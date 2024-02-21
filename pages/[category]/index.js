@@ -83,28 +83,28 @@ const Index = ({ initialData, bannerData }) => {
 
   const loadMoreData = async () => {
     if (loading || !hasMoreData) return;
-  
+
     setLoading(true);
-  
+
     try {
       const categoryResponse = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}categories?slug=${category}`
       );
       const categoryId = categoryResponse.data[0]?.id;
-  
+
       if (!categoryId) {
         setLoading(false);
         return;
       }
-  
+
       const response = await axios.get(
         `${
           process.env.NEXT_PUBLIC_API_URL
         }posts?categories=${categoryId}&per_page=10&page=${page + 1}&_embed`
       );
-  
+
       const newData = response.data;
-  
+
       if (newData.length > 0) {
         setData((prevData) => [...prevData, ...newData]);
         setPage((prevPage) => prevPage + 1);
@@ -117,19 +117,46 @@ const Index = ({ initialData, bannerData }) => {
       setLoading(false);
     }
   };
-  
+
   const redirect = (card) => {
     router.push(`/${category}/${card.slug}`);
   };
-  console.log()
+  console.log();
+
+
+  const Navigate = async (data) => {
+
+    const categoryArray = data._embedded["wp:term"][0];
+
+    if (categoryArray && categoryArray.length > 0) {
+      const firstCategory = categoryArray[0];
+
+      if (firstCategory.name) {
+        const categoryName = firstCategory.name;
+        const postTitle = data.slug;
+
+        if (categoryName && postTitle) {
+          router.push(`/${categoryName}/${postTitle}`);
+        } else {
+          console.error(
+            "Category name or post title is missing in the response."
+          );
+        }
+      } else {
+        console.error("Category information not found in the response.");
+      }
+    } else {
+      console.error("No categories found for this post.");
+    }
+  };
 
   return (
     <div>
-       <NextSeo
+      <NextSeo
         title={category}
         description={JSON.stringify(bannerData)}
         openGraph={{
-          title: {category},
+          title: { category },
           description: "Ashgamewitted",
           images: [
             {
@@ -143,18 +170,17 @@ const Index = ({ initialData, bannerData }) => {
       />
       <div className={styles.latestWrap}>
         <Container>
-        {bannerData && bannerData.length > 0 && (
-              <HeroBanner bannerData={bannerData}></HeroBanner>
-            )}
+          {bannerData && bannerData.length > 0 && (
+            <HeroBanner bannerData={bannerData}></HeroBanner>
+          )}
           <div className={styles.latestBody}>
-           
             <div className={styles.latestContent}>
               {/* <div className={styles.titleName}>Latest</div> */}
               <div className={styles.latestBox}>
                 {data && data.length > 0 ? (
                   data.map((card, index) => (
                     <>
-                     {/* <div className={styles.latestInfo}>
+                      {/* <div className={styles.latestInfo}>
                         
                         <h5
                           className="description"
@@ -164,29 +190,27 @@ const Index = ({ initialData, bannerData }) => {
                         ></h5>
                       </div> */}
 
-
                       <div
-                      className={styles.latestBoxItem}
-                      key={index}
-                      onClick={() => Navigate(card)}
-                    >
-                      <img
-                        className={styles.latestImg}
-                        src={card.jetpack_featured_media_url}
-                      />
-                      <div className={styles.latestInfo}>
-                      <h6>{card._embedded["wp:term"][0][0].name}</h6>
-                        <a href="#">{card.title.rendered}</a>
-                        <h5
-                          className="description"
-                          dangerouslySetInnerHTML={{
-                            __html: card.excerpt.rendered,
-                          }}
-                        ></h5>
+                        className={styles.latestBoxItem}
+                        key={index}
+                        onClick={() => Navigate(card)}
+                      >
+                        <img
+                          className={styles.latestImg}
+                          src={card.jetpack_featured_media_url}
+                        />
+                        <div className={styles.latestInfo}>
+                          <h6>{card._embedded["wp:term"][0][0].name}</h6>
+                          <a href="#">{card.title.rendered}</a>
+                          <h5
+                            className="description"
+                            dangerouslySetInnerHTML={{
+                              __html: card.excerpt.rendered,
+                            }}
+                          ></h5>
+                        </div>
                       </div>
-                    </div>
                     </>
-                  
                   ))
                 ) : (
                   <div className={styles.heroCardBoxItem}>
@@ -216,8 +240,6 @@ const Index = ({ initialData, bannerData }) => {
           </div>
         </Container>
       </div>
-
-    
     </div>
   );
 };

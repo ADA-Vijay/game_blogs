@@ -140,7 +140,7 @@ export default function Home({ newdata, bannerData }) {
 
           if (firstCategory.name) {
             const categoryName = firstCategory.name;
-            const postTitle = data.title.rendered;
+            const postTitle = data.slug;
 
             if (categoryName && postTitle) {
               router.push(`/${categoryName}/${postTitle}`);
