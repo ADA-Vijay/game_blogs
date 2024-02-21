@@ -14,6 +14,7 @@ import styles from "@/styles/Home.module.css";
 import Link from "next/link";
 import HeroBanner from "@/components/heroBanner";
 import { Container } from "react-bootstrap";
+import { NextSeo } from "next-seo";
 const Index = ({ initialData, bannerData }) => {
   const [data, setData] = useState(initialData);
   const [page, setPage] = useState(1);
@@ -117,6 +118,22 @@ const Index = ({ initialData, bannerData }) => {
 
   return (
     <div>
+       <NextSeo
+        title={category}
+        description={JSON.stringify(bannerData)}
+        openGraph={{
+          title: {category},
+          description: "Ashgamewitted",
+          images: [
+            {
+              // url: ${AppConfig.cdn}products/${selectedImg.current},
+              width: 800,
+              height: 600,
+              alt: "Alt",
+            },
+          ],
+        }}
+      />
       <div className={styles.latestWrap}>
         <Container>
         {bannerData && bannerData.length > 0 && (
