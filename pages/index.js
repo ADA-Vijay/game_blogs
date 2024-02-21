@@ -178,14 +178,14 @@ export default function Home({ newdata, bannerData }) {
   return (
     <>
       <NextSeo
-        title="Home"
+        title="Home | AshGamewitted"
         description={JSON.stringify(bannerData)}
         openGraph={{
-          title: "Home",
+          title: "Home | AshGamewitted",
           description: "Ashgamewitted",
           images: [
             {
-               url: newdata[0].jetpack_featured_media_url,
+              // url: newdata[0].jetpack_featured_media_url,
               width: 800,
               height: 600,
               alt: "Alt",
