@@ -236,8 +236,8 @@ export default function Home({ newdata, bannerData }) {
                         src={card.jetpack_featured_media_url}
                       />
                       <div className={styles.latestInfo}>
-                        <h6>{ReactHtmlParser(card._embedded["wp:term"][0][0].name)}</h6>
-                        <a href="#">{ReactHtmlParser(card.title.rendered)}</a>
+                        <h6>{card._embedded["wp:term"][0][0].name}</h6>
+                        <a href="#">{card.title.rendered}</a>
                         <h5
                           className="description"
                           dangerouslySetInnerHTML={{

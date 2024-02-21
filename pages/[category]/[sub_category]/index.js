@@ -4,7 +4,6 @@ import axios from "axios";
 import styles from "@/styles/Home.module.css";
 import Container from "react-bootstrap/Container";
 import { NextSeo } from "next-seo";
-import ReactHtmlParser from "react-html-parser";
 
 const trendingTopData = [
   {
@@ -56,7 +55,7 @@ const index = ({ data }) => {
               <div className={styles.latestBox}>
                 {data && data.length > 0 ? (
                   <>
-                    <h1>{ReactHtmlParser(data[0].title.rendered)}</h1>
+                    <h1>{data[0].title.rendered}</h1>
                     <div
                       key={index}
                       className={styles.subListingDetailsItem}

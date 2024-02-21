@@ -15,7 +15,6 @@ import Link from "next/link";
 import HeroBanner from "@/components/heroBanner";
 import { Container } from "react-bootstrap";
 import { NextSeo } from "next-seo";
-import ReactHtmlParser from "react-html-parser";
 
 const Index = ({ initialData, bannerData }) => {
   const [data, setData] = useState(initialData);
@@ -176,8 +175,8 @@ const Index = ({ initialData, bannerData }) => {
                         src={card.jetpack_featured_media_url}
                       />
                       <div className={styles.latestInfo}>
-                      <h6>{ReactHtmlParser(card._embedded["wp:term"][0][0].name)}</h6>
-                        <a href="#">{ReactHtmlParser(card.title.rendered)}</a>
+                      <h6>{card._embedded["wp:term"][0][0].name}</h6>
+                        <a href="#">{card.title.rendered}</a>
                         <h5
                           className="description"
                           dangerouslySetInnerHTML={{
