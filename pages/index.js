@@ -193,13 +193,7 @@ export default function Home({ newdata, bannerData }) {
           ],
         }}
       />
-       <Head>
-        <meta property="og:title" content="Home" />
-        <meta property="og:description" content="Ashgamewitted" />
-        <meta property="og:image" content={bannerData[0].jetpack_featured_media_url} />
-        <meta property="og:image:width" content="800" />
-        <meta property="og:image:height" content="600" />
-      </Head>
+   
       <main className="">
         {/* <Header></Header> */}
         {
