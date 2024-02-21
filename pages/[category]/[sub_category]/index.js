@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import styles from "@/styles/Home.module.css";
 import Container from "react-bootstrap/Container";
-
+import { NextSeo } from "next-seo";
 
 const trendingTopData = [
   {
@@ -30,6 +30,23 @@ const index = ({ data }) => {
   const { category, sub_category } = router.query;
   return (
     <div>
+      <NextSeo
+  title={data[0].title.rendered}
+  description={data[0].excerpt.rendered}
+  openGraph={{
+    title: data[0].title.rendered,
+    description: data[0].excerpt.rendered,
+    images: [
+      {
+        url: data[0].jetpack_featured_media_url,
+        width: 800,
+        height: 600,
+        alt: "Alt",
+      },
+    ],
+  }}
+/>
+
       <div className={styles.latestWrap}>
         <Container>
           <div className={styles.latestBody}>
