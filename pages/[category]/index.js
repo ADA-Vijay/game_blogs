@@ -15,6 +15,8 @@ import Link from "next/link";
 import HeroBanner from "@/components/heroBanner";
 import { Container } from "react-bootstrap";
 import { NextSeo } from "next-seo";
+import ReactHtmlParser from "react-html-parser";
+
 const Index = ({ initialData, bannerData }) => {
   const [data, setData] = useState(initialData);
   const [page, setPage] = useState(1);
@@ -82,28 +84,32 @@ const Index = ({ initialData, bannerData }) => {
 
   const loadMoreData = async () => {
     if (loading || !hasMoreData) return;
+  
     setLoading(true);
+  
     try {
       const categoryResponse = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}categories?slug=${category}`
       );
       const categoryId = categoryResponse.data[0]?.id;
+  
       if (!categoryId) {
         setLoading(false);
         return;
       }
+  
       const response = await axios.get(
         `${
           process.env.NEXT_PUBLIC_API_URL
         }posts?categories=${categoryId}&per_page=10&page=${page + 1}&_embed`
       );
+  
       const newData = response.data;
-
+  
       if (newData.length > 0) {
         setData((prevData) => [...prevData, ...newData]);
         setPage((prevPage) => prevPage + 1);
       } else {
-        setLoading(false);
         setHasMoreData(false);
       }
     } catch (error) {
@@ -112,9 +118,11 @@ const Index = ({ initialData, bannerData }) => {
       setLoading(false);
     }
   };
+  
   const redirect = (card) => {
     router.push(`/${category}/${card.slug}`);
   };
+  console.log()
 
   return (
     <div>
@@ -146,13 +154,40 @@ const Index = ({ initialData, bannerData }) => {
               <div className={styles.latestBox}>
                 {data && data.length > 0 ? (
                   data.map((card, index) => (
-                    <div
-                      className={` ${styles.subListingsItem}`}
-                      dangerouslySetInnerHTML={{
-                        __html: card.content.rendered,
-                      }}
-                      onClick={() => redirect(card)}
-                    ></div>
+                    <>
+                     {/* <div className={styles.latestInfo}>
+                        
+                        <h5
+                          className="description"
+                          dangerouslySetInnerHTML={{
+                            __html: card.excerpt.rendered,
+                          }}
+                        ></h5>
+                      </div> */}
+
+
+                      <div
+                      className={styles.latestBoxItem}
+                      key={index}
+                      onClick={() => Navigate(card)}
+                    >
+                      <img
+                        className={styles.latestImg}
+                        src={card.jetpack_featured_media_url}
+                      />
+                      <div className={styles.latestInfo}>
+                      <h6>{ReactHtmlParser(card._embedded["wp:term"][0][0].name)}</h6>
+                        <a href="#">{ReactHtmlParser(card.title.rendered)}</a>
+                        <h5
+                          className="description"
+                          dangerouslySetInnerHTML={{
+                            __html: card.excerpt.rendered,
+                          }}
+                        ></h5>
+                      </div>
+                    </div>
+                    </>
+                  
                   ))
                 ) : (
                   <div className={styles.heroCardBoxItem}>
@@ -215,11 +250,8 @@ export async function getServerSideProps(context) {
     }
 
     const response = await axios.get(
-      `${ApiUrl}posts?categories=${categoryId}&per_page=10`
+      `${ApiUrl}posts?categories=${categoryId}&per_page=10&_embed`
     );
-    // if(response.pageProps.initialData){
-    //   console.log("Page props comes")
-    // }
     const bannerResponse = await axios.get(
       ApiUrl + "posts?tags=606508198&_embed&per_page=4&orderby=date&order=desc"
     );
