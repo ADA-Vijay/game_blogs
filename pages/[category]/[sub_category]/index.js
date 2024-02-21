@@ -4,6 +4,7 @@ import axios from "axios";
 import styles from "@/styles/Home.module.css";
 import Container from "react-bootstrap/Container";
 import { NextSeo } from "next-seo";
+import ReactHtmlParser from "react-html-parser";
 
 const trendingTopData = [
   {
@@ -31,40 +32,46 @@ const index = ({ data }) => {
   return (
     <div>
       <NextSeo
-  title={data[0].title.rendered}
-  description={data[0].excerpt.rendered}
-  openGraph={{
-    title: data[0].title.rendered,
-    description: data[0].excerpt.rendered,
-    images: [
-      {
-        url: data[0].jetpack_featured_media_url,
-        width: 800,
-        height: 600,
-        alt: "Alt",
-      },
-    ],
-  }}
-/>
+        title={data[0].title.rendered}
+        description={data[0].excerpt.rendered}
+        openGraph={{
+          title: data[0].title.rendered,
+          description: data[0].excerpt.rendered,
+          images: [
+            {
+              url: data[0].jetpack_featured_media_url,
+              width: 1000,
+              height: 600,
+              alt: "Alt",
+            },
+          ],
+        }}
+      />
 
       <div className={styles.latestWrap}>
         <Container>
           <div className={styles.latestBody}>
             <div className={styles.latestContent}>
               {/* <div className={styles.titleName}>Latest</div> */}
-                <div className={styles.latestBox}>
-                  {data && data.length > 0 ? (
-                    <>
-                      <div key={index} className={styles.subListingDetailsItem} dangerouslySetInnerHTML={{__html:data[0].content.rendered}}> 
-                      </div>
-                    </>
-                  ) : (
-                    <div key={index} className={styles.heroCardBoxItem}>
-                      <h2 className="text-center">
-                        No Content found on {sub_category}
-                      </h2>
-                    </div>
-                  )}
+              <div className={styles.latestBox}>
+                {data && data.length > 0 ? (
+                  <>
+                    <h1>{ReactHtmlParser(data[0].title.rendered)}</h1>
+                    <div
+                      key={index}
+                      className={styles.subListingDetailsItem}
+                      dangerouslySetInnerHTML={{
+                        __html: data[0].content.rendered,
+                      }}
+                    ></div>
+                  </>
+                ) : (
+                  <div key={index} className={styles.heroCardBoxItem}>
+                    <h2 className="text-center">
+                      No Content found on {sub_category}
+                    </h2>
+                  </div>
+                )}
                 {/* {newdata.map((card, index) => (
                   <div
                     className={styles.latestBoxItem}
@@ -111,10 +118,8 @@ const index = ({ data }) => {
         </Container>
       </div>
       <div className="commentSection">
-       <h4 className="sitetitle">
-       </h4>
-       <div className="comments">
-       </div>
+        <h4 className="sitetitle"></h4>
+        <div className="comments"></div>
       </div>
     </div>
   );
