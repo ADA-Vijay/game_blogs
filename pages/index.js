@@ -11,7 +11,6 @@ import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
-import ReactHtmlParser from "react-html-parser";
 
 const inter = Inter({ subsets: ["latin"] });
 
