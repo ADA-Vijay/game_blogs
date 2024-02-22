@@ -125,7 +125,7 @@
   grid-template-columns: 75% 25%;
 }
 .latestContent{
-
+  margin-right: 2.6rem;
 }
 .titleName{
   font-size: 2.5rem;
@@ -212,13 +212,6 @@
   color: #b6b5b5;
   margin: 0;
 }
-.subListingDetailsItem {
-  margin-right: 2.6rem;
-}
-.subListingDetailsItem p{
-  margin-bottom: 5rem;
-  font-weight: 600;
-}
 .subListingsItem{
   display: grid;
   grid-template-columns: 35% 65%;
@@ -238,4 +231,55 @@
 .subListingsItem p:hover{
   text-decoration: underline;
   color: #7d581b;
+}
+.listingDetailMainImg{
+  margin-bottom: 6.4rem;
+}
+.listingDetailMainImg img {
+  width: 100%;
+  border-radius: 50px;
+  overflow: hidden;
+}
+.listingDetailMainTitle{
+  font-size: 4rem;
+}
+.subListingDetailsItem {
+  margin-right: 2.6rem;
+}
+.subListingDetailsItem p{
+}
+.subListingDetailsItem table{
+  border-collapse: collapse;
+    width: 100%;
+}
+.subListingDetailsItem table td{
+  border: 1px solid;
+    padding: 0.5em;
+}
+.subListingDetailsItem table .has-text-align-center,
+.subListingDetailsItem table [data-align="center"]{
+  text-align: center;
+}
+.subListingDetailsItem .wp-block-heading,
+.subListingDetailsItem ul,
+.subListingDetailsItem p,
+.subListingDetailsItem img,
+.subListingDetailsItem h1,
+.subListingDetailsItem h2,
+.subListingDetailsItem h4,
+.subListingDetailsItem table{
+  margin-top: 1.9rem;
+  margin-bottom: 0px;
+}
+.subListingDetailsItem h1.wp-block-heading,
+.subListingDetailsItem h1{
+  font-size: 4rem;
+}
+.subListingDetailsItem h2.wp-block-heading,
+.subListingDetailsItem h2{
+  font-size: 4rem;
+}
+.subListingDetailsItem h4.wp-block-heading,
+.subListingDetailsItem h4{
+  font-size: 2.4rem;
 }
