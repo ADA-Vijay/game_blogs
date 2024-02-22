@@ -109,7 +109,7 @@ const trendingTopData = [
   },
 ];
 
-export default function Home({ newdata, bannerData }) {
+export default function Home({ newdata, bannerData,trendingPosts }) {
   const router = useRouter();
   console.log("Banner Response : ", bannerData);
 
@@ -219,14 +219,19 @@ export default function Home({ newdata, bannerData }) {
           <Container>
             <div className={styles.promoBody}>
               <div className={styles.promoBox}>
-                {promoData.map((card, index) => (
+                {trendingPosts && trendingPosts.length > 0 ?(trendingPosts.map((card, index) => (
+                  <Link
+                  key={index}
+                  href={`/${card._embedded["wp:term"][0][0].slug}/`}
+                >
                   <div className={styles.promoBoxItem} key={index}>
-                    <img className={styles.promoImg} src={card.imageUrl} />
+                    <img className={styles.promoImg} src={card.jetpack_featured_media_url} />
                     <div className={styles.promoInfo}>
-                      <h4 className={styles.promoName}>{card.name}</h4>
+                      <h4 className={styles.promoName}>{card._embedded["wp:term"][0][0].name}</h4>
                     </div>
                   </div>
-                ))}
+                  </Link>
+                ))):("")}
               </div>
             </div>
           </Container>
@@ -293,6 +298,7 @@ export default function Home({ newdata, bannerData }) {
 export async function getServerSideProps({ context }) {
   const ApiUrl = process.env.NEXT_PUBLIC_API_URL;
   const bannerId = 606508198;
+  const trendingId = 606508208
   try {
     const bannerResponse = await axios.get(
       ApiUrl + "posts?tags=606508198&_embed&per_page=4&orderby=date&order=desc"
@@ -301,11 +307,14 @@ export async function getServerSideProps({ context }) {
     const response = await axios.get(
       ApiUrl + "posts?per_page=10&order=desc&orderby=date&_embed=1"
     );
-    const getDataByTag = await axios.get(ApiUrl + "")
     const newdata = response.data;
-
+    const trending = await axios.get(
+      `${ApiUrl}posts?tags=${trendingId}&_embed&per_page=3&orderby=date&order=desc`
+    );
+    
+    const trendingPosts = trending.data;
     if (newdata && bannerData) {
-      return { props: { newdata, bannerData } };
+      return { props: { newdata, bannerData,trendingPosts } };
     }
   } catch (error) {
     console.error("Error While Fetching the Data :", error);

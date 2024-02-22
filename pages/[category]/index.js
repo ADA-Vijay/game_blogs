@@ -132,7 +132,7 @@ const Index = ({ initialData, bannerData }) => {
       const firstCategory = categoryArray[0];
 
       if (firstCategory.name) {
-        const categoryName = firstCategory.name;
+        const categoryName = firstCategory.slug;
         const postTitle = data.slug;
 
         if (categoryName && postTitle) {
