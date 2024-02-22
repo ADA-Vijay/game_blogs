@@ -176,6 +176,19 @@ export default function Home({ newdata, bannerData }) {
     }
   };
 
+
+  const formatDate = (isoDate) => {
+    const options = { day: '2-digit', month: 'long', year: 'numeric' };
+    const date = new Date(isoDate);
+    return date.toLocaleDateString('en-US', options);
+  };
+
+  const formatTime = (isoDate) => {
+    const options = { hour: '2-digit', minute: '2-digit'};
+    const date = new Date(isoDate);
+    return date.toLocaleTimeString('en-US', options);
+  };
+
   return (
     <>
       <NextSeo
@@ -236,13 +249,15 @@ export default function Home({ newdata, bannerData }) {
                       />
                       <div className={styles.latestInfo}>
                         <h6>{card._embedded["wp:term"][0][0].name}</h6>
-                        <a dangerouslySetInnerHTML={{__html:card.title.rendered}}></a>
-                        <h5
+                        <p dangerouslySetInnerHTML={{__html:card.title.rendered}}></p>
+                        <span>{formatDate(card.date)} {formatTime(card.date)}</span>
+                        <h5 className="description">Author : {card._embedded.author[0].name}</h5>
+                        {/* <h5
                           className="description"
                           dangerouslySetInnerHTML={{
                             __html: card.excerpt.rendered,
                           }}
-                        ></h5>
+                        ></h5> */}
                       </div>
                     </div>
                   ))}

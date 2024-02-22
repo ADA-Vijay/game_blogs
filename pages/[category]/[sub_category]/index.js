@@ -55,7 +55,8 @@ const index = ({ data }) => {
               <div className={styles.latestBox}>
                 {data && data.length > 0 ? (
                   <>
-                    <h1 dangerouslySetInnerHTML={{__html:data[0].title.rendered}}></h1>
+                    <img src={data[0].jetpack_featured_media_url} />
+                    <h1 className="mt-3" dangerouslySetInnerHTML={{__html:data[0].title.rendered}}></h1>
                     <div
                       key={index}
                       className={styles.subListingDetailsItem}
