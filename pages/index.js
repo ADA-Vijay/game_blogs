@@ -3,14 +3,14 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import Header from "../components/header";
 import Footer from "../components/footer";
-import HeroBanner from "../components/heroBanner"
+import HeroBanner from "../components/heroBanner";
 import Container from "react-bootstrap/Container";
 import styles from "@/styles/Home.module.css";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { NextSeo } from "next-seo";
-import ListingPage from "@/components/lisitng"
+import ListingPage from "@/components/lisitng";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -91,13 +91,10 @@ const latestData = [
   },
 ];
 
-
-
-export default function Home({ newdata, bannerData,trendingPosts }) {
+export default function Home({ newdata, bannerData, trendingPosts }) {
   const router = useRouter();
 
   const Navigate = async (data) => {
-
     const categoryArray = data._embedded["wp:term"][0];
 
     if (categoryArray && categoryArray.length > 0) {
@@ -114,7 +111,6 @@ export default function Home({ newdata, bannerData,trendingPosts }) {
       // };
 
       const Navigate = async (data) => {
-
         const categoryArray = data._embedded["wp:term"][0];
 
         if (categoryArray && categoryArray.length > 0) {
@@ -158,9 +154,6 @@ export default function Home({ newdata, bannerData,trendingPosts }) {
     }
   };
 
-
-
-
   return (
     <>
       <NextSeo
@@ -169,34 +162,46 @@ export default function Home({ newdata, bannerData,trendingPosts }) {
         openGraph={{
           title: "Home | AshGamewitted",
           description: newdata[0].yoast_head_json.og_description,
-          images: newdata[0].yoast_head_json.og_image
+          images: [
+            {
+              url: newdata[0].yoast_head_json.og_image[0].url,
+              height: 1200,
+              width: 1000,
+            },
+          ],
         }}
       />
-   
+
       <main className="">
         {/* <Header></Header> */}
-        {
-         bannerData && bannerData.length > 0 && (
-            <HeroBanner bannerData={bannerData}></HeroBanner>
-          )
-        }
+        {bannerData && bannerData.length > 0 && (
+          <HeroBanner bannerData={bannerData}></HeroBanner>
+        )}
         <div className={styles.promoWrap}>
           <Container>
             <div className={styles.promoBody}>
               <div className={styles.promoBox}>
-                {trendingPosts && trendingPosts.length > 0 ?(trendingPosts.map((card, index) => (
-                  <Link
-                  key={index}
-                  href={`/${card._embedded["wp:term"][0][0].slug}/`}
-                >
-                  <div className={styles.promoBoxItem} key={index}>
-                    <img className={styles.promoImg} src={card.jetpack_featured_media_url} alt="img"/>
-                    <div className={styles.promoInfo} key={index}>
-                      <h4 className={styles.promoName}>{card._embedded["wp:term"][0][0].name}</h4>
-                    </div>
-                  </div>
-                  </Link>
-                ))):("")}
+                {trendingPosts && trendingPosts.length > 0
+                  ? trendingPosts.map((card, index) => (
+                      <Link
+                        key={index}
+                        href={`/${card._embedded["wp:term"][0][0].slug}/`}
+                      >
+                        <div className={styles.promoBoxItem} key={index}>
+                          <img
+                            className={styles.promoImg}
+                            src={card.jetpack_featured_media_url}
+                            alt="img"
+                          />
+                          <div className={styles.promoInfo} key={index}>
+                            <h4 className={styles.promoName}>
+                              {card._embedded["wp:term"][0][0].name}
+                            </h4>
+                          </div>
+                        </div>
+                      </Link>
+                    ))
+                  : ""}
               </div>
             </div>
           </Container>
@@ -211,7 +216,7 @@ export default function Home({ newdata, bannerData,trendingPosts }) {
 export async function getServerSideProps({ context }) {
   const ApiUrl = process.env.NEXT_PUBLIC_API_URL;
   const bannerId = 606508198;
-  const trendingId = 606508208
+  const trendingId = 606508208;
   try {
     const bannerResponse = await axios.get(
       ApiUrl + "posts?tags=606508198&_embed&per_page=4&orderby=date&order=desc"
@@ -224,10 +229,10 @@ export async function getServerSideProps({ context }) {
     const trending = await axios.get(
       `${ApiUrl}posts?tags=${trendingId}&_embed&per_page=3&orderby=date&order=desc`
     );
-    
+
     const trendingPosts = trending.data;
     if (newdata && bannerData) {
-      return { props: { newdata, bannerData,trendingPosts } };
+      return { props: { newdata, bannerData, trendingPosts } };
     }
   } catch (error) {
     console.error("Error While Fetching the Data :", error);
