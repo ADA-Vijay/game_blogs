@@ -123,10 +123,10 @@ const Index = ({ initialData, bannerData }) => {
   return (
     <div>
       <NextSeo
-        title={category}
+        title= {initialData[0]._embedded["wp:term"][0][0].name}
         description={initialData[0].yoast_head_json.og_description}
         openGraph={{
-          title: { category },
+          title: initialData[0]._embedded["wp:term"][0][0].name,
           description: initialData[0].yoast_head_json.og_description,
           images: initialData[0].yoast_head_json.og_image
         }}
