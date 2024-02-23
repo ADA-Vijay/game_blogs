@@ -54,10 +54,15 @@ const index = ({ data }) => {
               <div className={styles.latestBox}>
                 {data && data.length > 0 ? (
                   <>
+                    <div
+                      className={`${styles.listingDetailMainTitle} mb-4`}
+                      dangerouslySetInnerHTML={{
+                        __html: data[0].title.rendered,
+                      }}
+                    ></div>
                     <div className={styles.listingDetailMainImg}>
-                      <img src={data[0].jetpack_featured_media_url} alt="img"/>
+                      <img src={data[0].jetpack_featured_media_url} alt="img" />
                     </div>
-                    <div className={styles.listingDetailMainTitle} dangerouslySetInnerHTML={{__html:data[0].title.rendered}}></div>
                     <div
                       key={index}
                       className={styles.subListingDetailsItem}
@@ -99,7 +104,10 @@ const index = ({ data }) => {
             </div>
             <div className={styles.trendingTopWrap}>
               <div>
-                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR4El1B5cOf9EjkuWgq4J_2RBIjo4jmzznJ8_3aMgezV3h3DJpE"  alt="img"/>
+                <img
+                  src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR4El1B5cOf9EjkuWgq4J_2RBIjo4jmzznJ8_3aMgezV3h3DJpE"
+                  alt="img"
+                />
               </div>
               <div className={styles.trendingTopHead}>
                 <div className={styles.trendingTopTitle}>trending topics</div>
