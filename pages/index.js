@@ -166,7 +166,7 @@ export default function Home({ newdata, bannerData, trendingPosts }) {
             {
               url: newdata[0].yoast_head_json.og_image[0].url,
               height: 1200,
-              width: 1000,
+              width: 600,
             },
           ],
         }}
