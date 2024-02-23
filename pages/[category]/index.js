@@ -138,12 +138,12 @@ const Index = ({ initialData, bannerData }) => {
           ],
         }}
       />
-      {/* <div className={styles.latestWrap}>
+       <div className={styles.latestWrap}>
         <Container>
           {bannerData && bannerData.length > 0 && (
             <HeroBanner bannerData={bannerData}></HeroBanner>
           )}
-          <div className={styles.latestBody}>
+          {/* <div className={styles.latestBody}>
             <div className={styles.latestContent}>
               <div className={styles.latestBox}>
                 {data && data.length > 0 ? (
@@ -208,9 +208,9 @@ const Index = ({ initialData, bannerData }) => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </Container>
-      </div> */}
+      </div> 
       <ListingPage newdata={data} />
 
     </div>
