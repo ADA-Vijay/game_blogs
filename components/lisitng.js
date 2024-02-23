@@ -44,7 +44,7 @@ const lisitng = ({newdata}) => {
           <div className={styles.titleName}>{}</div>
           <div className={styles.latestBox}>
             {newdata.map((card, index) => (
-              <Link  href={card._embedded["wp:term"][0][0].slug + "/"+card.slug}>
+              <Link  href={card._embedded["wp:term"][0][0].slug + "/"+card.slug} key={index}>
                  <div
                 className={styles.latestBoxItem}
                 key={index}
@@ -54,7 +54,7 @@ const lisitng = ({newdata}) => {
                   className={styles.latestImg}
                   src={card.jetpack_featured_media_url}
                 />
-                <div className={styles.latestInfo}>
+                <div className={styles.latestInfo} key={index}>
                   <h6>{card._embedded["wp:term"][0][0].name}</h6>
                   <p dangerouslySetInnerHTML={{__html:card.title.rendered}}></p>
                   <span>{formatDate(card.date)} {formatTime(card.date)}</span>

@@ -198,7 +198,7 @@ export default function Home({ newdata, bannerData,trendingPosts }) {
                 >
                   <div className={styles.promoBoxItem} key={index}>
                     <img className={styles.promoImg} src={card.jetpack_featured_media_url} />
-                    <div className={styles.promoInfo}>
+                    <div className={styles.promoInfo} key={index}>
                       <h4 className={styles.promoName}>{card._embedded["wp:term"][0][0].name}</h4>
                     </div>
                   </div>

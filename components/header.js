@@ -78,7 +78,7 @@ export default function Header() {
                           className={styles.headerDropdown}
                         >
                           {subCategory.get(cat.id).map((sub) => (
-                            <NavDropdown.Item>
+                            <NavDropdown.Item key={sub.id}>
                             <Link key={sub.id} href={`/${sub.slug}`} className={`${styles.navLink} ${styles.headerlink}`}>
                               {sub.name}
                             </Link>
@@ -87,7 +87,7 @@ export default function Header() {
                         </NavDropdown>
                       )}
                     {!subCategory.has(cat.id) && (
-                      <Nav.Link>
+                      <Nav.Link key={sub.id}>
                         <Link
                           href={cat.slug === "home" ? "/" : `/${cat.slug}`}
                           className={`${styles.navLink} ${styles.headerlink}`}
