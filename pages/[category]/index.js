@@ -124,18 +124,11 @@ const Index = ({ initialData, bannerData }) => {
     <div>
       <NextSeo
         title={category}
-        description={JSON.stringify(bannerData)}
+        description={initialData[0].yoast_head_json.og_description}
         openGraph={{
           title: { category },
-          description: "Ashgamewitted",
-          images: [
-            {
-              // url: ${AppConfig.cdn}products/${selectedImg.current},
-              width: 800,
-              height: 600,
-              alt: "Alt",
-            },
-          ],
+          description: initialData[0].yoast_head_json.og_description,
+          images: initialData[0].yoast_head_json.og_image
         }}
       />
        <div className={styles.latestWrap}>

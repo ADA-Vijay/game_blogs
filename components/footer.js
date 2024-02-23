@@ -31,22 +31,22 @@ function Footer() {
                 <div className={styles.footerMediaImg}>
                   <ul>
                     <li>
-                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPzZht6I6bn2jLswujx_eqy3Yq6L4fkxvNIZipf3ggrz51yUIi' />
+                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPzZht6I6bn2jLswujx_eqy3Yq6L4fkxvNIZipf3ggrz51yUIi' alt="img"  />
                     </li>
                     <li>
-                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPzZht6I6bn2jLswujx_eqy3Yq6L4fkxvNIZipf3ggrz51yUIi' />
+                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPzZht6I6bn2jLswujx_eqy3Yq6L4fkxvNIZipf3ggrz51yUIi' alt="img" />
                     </li>
                     <li>
-                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPzZht6I6bn2jLswujx_eqy3Yq6L4fkxvNIZipf3ggrz51yUIi' />
+                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPzZht6I6bn2jLswujx_eqy3Yq6L4fkxvNIZipf3ggrz51yUIi' alt="img" />
                     </li>
                     <li>
-                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPzZht6I6bn2jLswujx_eqy3Yq6L4fkxvNIZipf3ggrz51yUIi' />
+                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPzZht6I6bn2jLswujx_eqy3Yq6L4fkxvNIZipf3ggrz51yUIi' alt="img"/>
                     </li>
                     <li>
-                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPzZht6I6bn2jLswujx_eqy3Yq6L4fkxvNIZipf3ggrz51yUIi' />
+                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPzZht6I6bn2jLswujx_eqy3Yq6L4fkxvNIZipf3ggrz51yUIi' alt="img" />
                     </li>
                     <li>
-                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPzZht6I6bn2jLswujx_eqy3Yq6L4fkxvNIZipf3ggrz51yUIi' />
+                      <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPzZht6I6bn2jLswujx_eqy3Yq6L4fkxvNIZipf3ggrz51yUIi' alt="img" />
                     </li>
                   </ul>
                 </div>

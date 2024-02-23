@@ -53,6 +53,7 @@ const lisitng = ({newdata}) => {
                 <img
                   className={styles.latestImg}
                   src={card.jetpack_featured_media_url}
+                  alt="img"
                 />
                 <div className={styles.latestInfo} key={index}>
                   <h6>{card._embedded["wp:term"][0][0].name}</h6>
@@ -74,7 +75,7 @@ const lisitng = ({newdata}) => {
         </div>
         <div className={styles.trendingTopWrap}>
           <div>
-            <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR4El1B5cOf9EjkuWgq4J_2RBIjo4jmzznJ8_3aMgezV3h3DJpE" />
+            <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR4El1B5cOf9EjkuWgq4J_2RBIjo4jmzznJ8_3aMgezV3h3DJpE" alt="img"/>
           </div>
           <div className={styles.trendingTopHead}>
             <div className={styles.trendingTopTitle}>trending topics</div>

@@ -165,7 +165,7 @@ export default function Home({ newdata, bannerData,trendingPosts }) {
     <>
       <NextSeo
         title="Home | AshGamewitted"
-        description={JSON.stringify(bannerData)}
+        description="All the related"
         openGraph={{
           title: "Home | AshGamewitted",
           description: "Ashgamewitted",
@@ -197,7 +197,7 @@ export default function Home({ newdata, bannerData,trendingPosts }) {
                   href={`/${card._embedded["wp:term"][0][0].slug}/`}
                 >
                   <div className={styles.promoBoxItem} key={index}>
-                    <img className={styles.promoImg} src={card.jetpack_featured_media_url} />
+                    <img className={styles.promoImg} src={card.jetpack_featured_media_url} alt="img"/>
                     <div className={styles.promoInfo} key={index}>
                       <h4 className={styles.promoName}>{card._embedded["wp:term"][0][0].name}</h4>
                     </div>

@@ -55,7 +55,7 @@ const index = ({ data }) => {
                 {data && data.length > 0 ? (
                   <>
                     <div className={styles.listingDetailMainImg}>
-                      <img src={data[0].jetpack_featured_media_url} />
+                      <img src={data[0].jetpack_featured_media_url} alt="img"/>
                     </div>
                     <div className={styles.listingDetailMainTitle} dangerouslySetInnerHTML={{__html:data[0].title.rendered}}></div>
                     <div
@@ -99,7 +99,7 @@ const index = ({ data }) => {
             </div>
             <div className={styles.trendingTopWrap}>
               <div>
-                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR4El1B5cOf9EjkuWgq4J_2RBIjo4jmzznJ8_3aMgezV3h3DJpE" />
+                <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcR4El1B5cOf9EjkuWgq4J_2RBIjo4jmzznJ8_3aMgezV3h3DJpE"  alt="img"/>
               </div>
               <div className={styles.trendingTopHead}>
                 <div className={styles.trendingTopTitle}>trending topics</div>
