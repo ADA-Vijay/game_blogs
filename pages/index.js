@@ -165,18 +165,11 @@ export default function Home({ newdata, bannerData,trendingPosts }) {
     <>
       <NextSeo
         title="Home | AshGamewitted"
-        description="All the related"
+        description={newdata[0].yoast_head_json.og_description}
         openGraph={{
           title: "Home | AshGamewitted",
-          description: "Ashgamewitted",
-          images: [
-            {
-              url: bannerData[0].jetpack_featured_media_url,
-              width: 800,
-              height: 600,
-              alt: "Alt",
-            },
-          ],
+          description: newdata[0].yoast_head_json.og_description,
+          images: newdata[0].yoast_head_json.og_image
         }}
       />
    
