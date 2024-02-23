@@ -37,7 +37,7 @@ const index = ({ data }) => {
           description: data[0].yoast_head_json.description,
           images: [
             {
-              url: data[0].og_image[0].url,
+              url: data[0].yoast_head_json.og_image[0].url,
               height: 1200,
               width: 600,
               alt: "Alt",
