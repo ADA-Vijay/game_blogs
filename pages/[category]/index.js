@@ -15,6 +15,7 @@ import Link from "next/link";
 import HeroBanner from "@/components/heroBanner";
 import { Container } from "react-bootstrap";
 import { NextSeo } from "next-seo";
+import ListingPage from "@/components/lisitng"
 
 const Index = ({ initialData, bannerData }) => {
   const [data, setData] = useState(initialData);
@@ -29,24 +30,7 @@ const Index = ({ initialData, bannerData }) => {
     setHasMoreData(true);
   }, [initialData]);
   const { category } = router.query;
-  const trendingTopData = [
-    {
-      name: "Palworld Guide: How to Fain Your Base",
-      activeDate: "arzan khan 2 months ago",
-    },
-    {
-      name: "Genshin Impact 4.4: All Things You Need to Know",
-      activeDate: "arzan khan 2 months ago",
-    },
-    {
-      name: "Destiny 2 Players Are Shocked with the New Character",
-      activeDate: "arzan khan 2 months ago",
-    },
-    {
-      name: "Keanu Reeves Cameo in the Newest Cyberpunk Update",
-      activeDate: "arzan khan 2 months ago",
-    },
-  ];
+ 
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,18 +52,6 @@ const Index = ({ initialData, bannerData }) => {
     };
   }, [data, loading, hasMoreData]);
 
-  useEffect(() => {
-    console.log("useEffect - initialData:", initialData);
-  }, [initialData]);
-
-  useEffect(() => {
-    console.log(
-      "useEffect - data, loading, hasMoreData:",
-      data,
-      loading,
-      hasMoreData
-    );
-  }, [data, loading, hasMoreData]);
 
   const loadMoreData = async () => {
     if (loading || !hasMoreData) return;
@@ -118,10 +90,7 @@ const Index = ({ initialData, bannerData }) => {
     }
   };
 
-  const redirect = (card) => {
-    router.push(`/${category}/${card.slug}`);
-  };
-  console.log();
+  
 
 
   const Navigate = async (data) => {
@@ -150,17 +119,6 @@ const Index = ({ initialData, bannerData }) => {
     }
   };
 
-  const formatDate = (isoDate) => {
-    const options = { day: '2-digit', month: 'long', year: 'numeric' };
-    const date = new Date(isoDate);
-    return date.toLocaleDateString('en-US', options);
-  };
-
-  const formatTime = (isoDate) => {
-    const options = { hour: '2-digit', minute: '2-digit'};
-    const date = new Date(isoDate);
-    return date.toLocaleTimeString('en-US', options);
-  };
 
   return (
     <div>
@@ -180,19 +138,18 @@ const Index = ({ initialData, bannerData }) => {
           ],
         }}
       />
-      <div className={styles.latestWrap}>
+      {/* <div className={styles.latestWrap}>
         <Container>
           {bannerData && bannerData.length > 0 && (
             <HeroBanner bannerData={bannerData}></HeroBanner>
           )}
           <div className={styles.latestBody}>
             <div className={styles.latestContent}>
-              {/* <div className={styles.titleName}>Latest</div> */}
               <div className={styles.latestBox}>
                 {data && data.length > 0 ? (
                   data.map((card, index) => (
                     <>
-                      {/* <div className={styles.latestInfo}>
+                      <div className={styles.latestInfo}>
                         
                         <h5
                           className="description"
@@ -200,7 +157,7 @@ const Index = ({ initialData, bannerData }) => {
                             __html: card.excerpt.rendered,
                           }}
                         ></h5>
-                      </div> */}
+                      </div>
 
                       <div
                         className={styles.latestBoxItem}
@@ -216,12 +173,12 @@ const Index = ({ initialData, bannerData }) => {
                           <p dangerouslySetInnerHTML={{__html:card.title.rendered}}></p>
                         <span>{formatDate(card.date)} {formatTime(card.date)}</span>
                         <h5 className="description">Author : {card._embedded.author[0].name}</h5>
-                          {/* <h5
+                          <h5
                             className="description"
                             dangerouslySetInnerHTML={{
                               __html: card.excerpt.rendered,
                             }}
-                          ></h5> */}
+                          ></h5>
                         </div>
                       </div>
                     </>
@@ -253,16 +210,22 @@ const Index = ({ initialData, bannerData }) => {
             </div>
           </div>
         </Container>
-      </div>
+      </div> */}
+      <ListingPage newdata={data} />
+
     </div>
   );
 };
 
 export default Index;
 
+
+
+
+
+  
 export async function getServerSideProps(context) {
   const { category } = context.query;
-  console.log("category choosen by the user", category);
   if (!category) {
     return {
       props: { initialData: null },
@@ -275,7 +238,6 @@ export async function getServerSideProps(context) {
     const categoryResponse = await axios.get(
       `${ApiUrl}categories?slug=${category}`
     );
-    console.log("Category Response from the server ", categoryResponse);
     const categoryId = categoryResponse.data[0]?.id;
 
     if (!categoryId) {
@@ -292,7 +254,6 @@ export async function getServerSideProps(context) {
     );
     const bannerData = bannerResponse.data;
     const initialData = response.data;
-    console.log("response for the categoryid ", initialData);
     if (initialData.length > 0) {
       return {
         props: { initialData: initialData, bannerData: bannerData },

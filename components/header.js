@@ -8,11 +8,15 @@ import styles from "@/styles/Header.module.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from 'next/router';
+
 export default function Header() {
   const [category, setCategory] = useState({});
   const [subCategory, setSubCategory] = useState([]);
   // const [saveCategory,setSaveCategory] = useState([])
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const [searchQuery, setSearchQuery] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
     fetchData();
@@ -48,6 +52,13 @@ export default function Header() {
       console.error("Error fetching data:", error);
     }
   };
+
+  // const handleSearch = (event) => {
+  //   event.preventDefault();
+  //   const searchQuery = event.target.elements.search.value;
+
+  //   router.push(`/search?query=${searchQuery}`);
+  // };
 
   return (
     <Navbar expand="lg" className={styles.headerWrap}>
@@ -91,9 +102,11 @@ export default function Header() {
 
             <div className={styles.extraHeaderWrap}>
               <div className={styles.searchHeaderWrap}>
+               
                 <div className={styles.searchInput}>
-                  <Form.Control type="text" placeholder="" />
-                  <span className={styles.searchIcon}>
+                  <Form.Control type="text" placeholder="" value={searchQuery} onChange={(e)=>setSearchQuery(e.target.value)}/>
+                  <Link className={styles.searchLink} href={searchQuery && searchQuery !== "" && "/search?query="+ searchQuery}>
+                  <span className={styles.searchIcon} >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -105,6 +118,7 @@ export default function Header() {
                       <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                     </svg>
                   </span>
+                  </Link>        
                 </div>
               </div>
               <div className={styles.headerMenuWrap}>

@@ -25,7 +25,6 @@ const trendingTopData = [
 ];
 
 const index = ({ data }) => {
-  console.log("Result Data", data);
   const router = useRouter();
   const { category, sub_category } = router.query;
   return (

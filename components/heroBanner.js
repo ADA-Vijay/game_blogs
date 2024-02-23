@@ -3,7 +3,6 @@ import Link from "next/link";
 import axios from "axios";
 
 function HeroBanner({ bannerData }) {
-  console.log("My banner data", bannerData);
 
   return (
     <div className={styles.heroCardWrap}>
