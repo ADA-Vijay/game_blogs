@@ -30,16 +30,16 @@ const index = ({ data }) => {
   return (
     <div>
       <NextSeo
-        title={data[0].title.rendered}
-        description={data[0].excerpt.rendered}
+        title={data[0].yoast_head_json.title}
+        description={data[0].yoast_head_json.description}
         openGraph={{
-          title: data[0].title.rendered,
-          description: data[0].excerpt.rendered,
+          title: data[0].yoast_head_json.title,
+          description: data[0].yoast_head_json.description,
           images: [
             {
-              url: data[0].jetpack_featured_media_url,
-              width: 1000,
-              height: 600,
+              url: data[0].og_image[0].url,
+              height: 1200,
+              width: 600,
               alt: "Alt",
             },
           ],
