@@ -48,9 +48,11 @@ const index = ({ data }) => {
 
       <div className={styles.latestWrap}>
         <Container>
+          <div className={styles.listingDetailsWrap}>
           <div className={styles.latestBody}>
             <div className={styles.latestContent}>
               {/* <div className={styles.titleName}>Latest</div> */}
+              <div className={styles.listingDetailsBody}>
               <div className={styles.latestBox}>
                 {data && data.length > 0 ? (
                   <>
@@ -101,6 +103,8 @@ const index = ({ data }) => {
                   </div>
                 ))} */}
               </div>
+              </div>
+              
             </div>
             <div className={styles.trendingTopWrap}>
               <div>
@@ -123,6 +127,7 @@ const index = ({ data }) => {
                 </div>
               </div>
             </div>
+          </div>
           </div>
         </Container>
       </div>

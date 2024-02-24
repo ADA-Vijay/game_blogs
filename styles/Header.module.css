@@ -34,7 +34,7 @@
     padding-left: 3.2rem;
     background-color: var(--headerSearchBg);
     color: var(--headerSearchColor);
-    border-color: var(--headerSearchBg);
+    border-color: var(--headerSearchColor);
     font-size: 1.6rem;
 }
 .searchInput input:hover,
@@ -42,7 +42,7 @@
 .searchInput input:focus{
     background-color: var(--headerSearchBg);
     color: var(--headerSearchColor);
-    border-color: var(--headerSearchBg);
+    border-color: var(--headerSearchColor);
     box-shadow: unset;
 }
 .searchIcon{

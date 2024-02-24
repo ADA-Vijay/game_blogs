@@ -12,6 +12,9 @@
 }
 .heroCardBoxItem{
   position: relative;
+  height: 530px;
+    width: 100%;
+    background-position: center;
 }
 .heroCardBoxItem::after{
   content: "";
@@ -30,7 +33,8 @@
 }
 .heroCardBoxItemImg{
   width: 100%;
-  height: 100%;
+  height: 430px;
+  display: none;
 }
 .heroCardBoxItemInfo{
   width: 100%;
@@ -68,12 +72,15 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding: 25px 0px;
+  grid-column-gap: 1.6rem;
 }
 .promoBoxItem{
   position: relative;
   border-radius: var(--border-radius);
   overflow: hidden;
-  border: 5px solid #626159;
+  /* border: 5px solid #626159; */
+  color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .promoBoxItem:not(:last-child){
   margin-right: 25px;
@@ -99,6 +106,7 @@
   font-size: 1.6rem;
   margin: 0;
   text-transform: uppercase;
+  font-weight: 600;
 }
 .promoBoxItem::after{
   content: "";
@@ -133,8 +141,9 @@
   text-transform: uppercase;
   margin-bottom: 2.5rem;
 }
-.latestBox{
-
+.latestBox a{
+  color: unset;
+  text-decoration: unset;
 }
 .latestBoxItem{
   display: grid;
@@ -144,34 +153,73 @@
 .latestImg{
   width: 100%;
 }
+.promoTitles{
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+.promoTitles h4{
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--bodyColor);
+  text-transform: uppercase;
+  margin: 0;
+  white-space: nowrap;
+}
+.headingLine{
+  height: 0.5rem;
+    background-color: rgb(246, 246, 246);
+    width: 100%;
+    margin-bottom: 0.75rem;
+    margin-left: 0.5rem;
+}
+.LatestTitles{
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--bodyColor);
+  text-transform: uppercase;
+}
 .latestInfo{
   margin-left: 25px;
   width: 80%;
 }
 .latestInfo h6{
   font-size: 1.4rem;
-  text-transform: uppercase;
-  margin-bottom: 1rem 
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    line-height: 16px;
+    margin: 0;
+    color: #7d581b;
 }
-.latestInfo a{
-  font-size: 1.8rem;
-  text-transform: capitalize;
-  color: var(--bodyColor);
-  text-decoration: none;
-  font-weight: 600;
+.latestInfo p{
+  font-size: 2.2rem;
+    text-transform: capitalize;
+    color: var(--bodyColor);
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0;
+    margin-top: 6px;
 }
-.latestInfo a:hover{
+.latestInfo p:hover{
   text-decoration: underline;
   color: #7d581b;
 }
-.latestInfo h5{
-  margin-top: 1rem;
+.latestInfo span{
   font-size: 1.2rem;
-  color: #b6b5b5;
+  font-family: ui-rounded;
+}
+.latestInfo h5{
+  margin-top: 0.5rem;
+  font-size: 1rem;
   text-transform: capitalize;
+  font-family: ui-rounded;
 }
 .trendingTopWrap{
 
+}
+.listingDetailsWrap{
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 .trendingTopWrap img{
   width: 100%;
@@ -180,7 +228,7 @@
 }
 .trendingTopHead{
   padding: 15px;
-  background-color: #000000;
+  background-color: #eeeeee;
   text-transform: capitalize;
   overflow: hidden;
   border-radius: var(--border-radius);
@@ -233,15 +281,19 @@
   color: #7d581b;
 }
 .listingDetailMainImg{
-  margin-bottom: 6.4rem;
+  margin-bottom: 2.6rem;
 }
 .listingDetailMainImg img {
   width: 100%;
-  border-radius: 50px;
   overflow: hidden;
 }
 .listingDetailMainTitle{
-  font-size: 4rem;
+  font-size: 4.5rem;
+    line-height: 50px;
+}
+.listingDetailsBody {
+  width: 80%;
+  margin: auto;
 }
 .subListingDetailsItem {
   margin-right: 2.6rem;
@@ -270,16 +322,21 @@
 .subListingDetailsItem table{
   margin-top: 1.9rem;
   margin-bottom: 0px;
+  font-family: sans-serif;
+  font-size: 1.8rem;
 }
 .subListingDetailsItem h1.wp-block-heading,
 .subListingDetailsItem h1{
   font-size: 4rem;
+  font-family: var(--font-family);
 }
 .subListingDetailsItem h2.wp-block-heading,
 .subListingDetailsItem h2{
   font-size: 4rem;
+  font-family: var(--font-family);
 }
 .subListingDetailsItem h4.wp-block-heading,
 .subListingDetailsItem h4{
   font-size: 2.4rem;
+  font-family: var(--font-family);
 }

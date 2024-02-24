@@ -14,6 +14,7 @@ function HeroBanner({ bannerData }) {
                 key={index}
                 href={`/${card._embedded["wp:term"][0][0].slug}/${card.slug}`}
               >
+                {/* style={`background: url(${card.jetpack_featured_media_url})`} */}
                 <div className={styles.heroCardBoxItem}>
                   <img
                     src={card.jetpack_featured_media_url}

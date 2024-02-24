@@ -121,7 +121,7 @@ export default function Header() {
                   </Link>        
                 </div>
               </div>
-              <div className={styles.headerMenuWrap}>
+              {/* <div className={styles.headerMenuWrap}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -135,7 +135,7 @@ export default function Header() {
                     d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
                   />
                 </svg>
-              </div>
+              </div> */}
             </div>
           </Nav>
         </Navbar.Collapse>

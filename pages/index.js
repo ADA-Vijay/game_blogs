@@ -180,6 +180,7 @@ export default function Home({ newdata, bannerData, trendingPosts }) {
         <div className={styles.promoWrap}>
           <Container>
             <div className={styles.promoBody}>
+              <div className={styles.promoTitles}><h4>POPULAR CATEGORIES</h4><div className={styles.headingLine}></div></div>
               <div className={styles.promoBox}>
                 {trendingPosts && trendingPosts.length > 0
                   ? trendingPosts.map((card, index) => (
@@ -206,6 +207,10 @@ export default function Home({ newdata, bannerData, trendingPosts }) {
             </div>
           </Container>
         </div>
+        
+        <Container>
+          <div className={styles.promoTitles}><h4>Latest</h4><div className={styles.headingLine}></div></div>
+          </Container>
         <ListingPage newdata={newdata} />
         <Footer></Footer>
       </main>
