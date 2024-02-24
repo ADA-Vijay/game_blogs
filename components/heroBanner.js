@@ -15,12 +15,12 @@ function HeroBanner({ bannerData }) {
                 href={`/${card._embedded["wp:term"][0][0].slug}/${card.slug}`}
               >
                 {/* style={`background: url(${card.jetpack_featured_media_url})`} */}
-                <div className={styles.heroCardBoxItem}>
-                  <img
+                <div className={styles.heroCardBoxItem} style={{ background: `url(${card.jetpack_featured_media_url})` }}>
+                  {/* <img
                     src={card.jetpack_featured_media_url}
                     alt="hero images"
                     className={styles.heroCardBoxItemImg}
-                  />
+                  /> */}
                   <div className={styles.heroCardBoxItemInfo}>
                     <h6 className={styles.heroCardBoxItemBags}>
                       {card._embedded["wp:term"][0][0].name}

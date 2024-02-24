@@ -12,9 +12,12 @@
 }
 .heroCardBoxItem{
   position: relative;
-  height: 530px;
+    height: 530px;
     width: 100%;
-    background-position: center;
+    /* background-position: center !important; */
+    background-position: center center !important;
+    /* background-size: contain !important; */
+    background-repeat: no-repeat !important;
 }
 .heroCardBoxItem::after{
   content: "";
