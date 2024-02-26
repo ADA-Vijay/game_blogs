@@ -82,7 +82,7 @@ export default function Header() {
                         </NavDropdown>
                       )}
                     {!subCategory.has(cat.id) && (
-                      <Nav.Link key={sub.id}>
+                      <Nav.Link key={cat.id}>
                         <Link
                           href={cat.slug === "home" ? "/" : `/${cat.slug}`}
                           className={`${styles.navLink} ${styles.headerlink}`}

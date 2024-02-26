@@ -20,21 +20,32 @@ export default function Home({ newdata, bannerData, trendingPosts }) {
 
   return (
     <>
-      <NextSeo
+
+{newdata && newdata.length > 0 ? (
+         <NextSeo
+         title="Home | AshGamewitted"
+         description={newdata[0].yoast_head_json.og_description}
+         openGraph={{
+           title: "Home | AshGamewitted",
+           description: newdata[0].yoast_head_json.og_description,
+           images: [
+             {
+               url: newdata[0].yoast_head_json.og_image[0].url,
+               height: 1200,
+               width: 600,
+             },
+           ],
+         }}
+       />
+      ) : (
+        <NextSeo
         title="Home | AshGamewitted"
-        description={newdata[0].yoast_head_json.og_description}
-        openGraph={{
-          title: "Home | AshGamewitted",
-          description: newdata[0].yoast_head_json.og_description,
-          images: [
-            {
-              url: newdata[0].yoast_head_json.og_image[0].url,
-              height: 1200,
-              width: 600,
-            },
-          ],
-        }}
-      />
+        description="" 
+        openGraph={{}} />
+      )}
+
+
+     
 
       <main className="">
         {bannerData && bannerData.length > 0 && (

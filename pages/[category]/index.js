@@ -90,17 +90,51 @@ const Index = ({ initialData, bannerData }) => {
     }
   };
 
+  
+
+
+  const Navigate = async (data) => {
+
+    const categoryArray = data._embedded["wp:term"][0];
+
+    if (categoryArray && categoryArray.length > 0) {
+      const firstCategory = categoryArray[0];
+
+      if (firstCategory.name) {
+        const categoryName = firstCategory.slug;
+        const postTitle = data.slug;
+
+        if (categoryName && postTitle) {
+          router.push(`/${categoryName}/${postTitle}`);
+        } else {
+          console.error(
+            "Category name or post title is missing in the response."
+          );
+        }
+      } else {
+        console.error("Category information not found in the response.");
+      }
+    } else {
+      console.error("No categories found for this post.");
+    }
+  };
+
+
   return (
     <div>
-      <NextSeo
-        title= {initialData[0]._embedded["wp:term"][0][0].name}
-        description={initialData[0].yoast_head_json.og_description}
-        openGraph={{
-          title: initialData[0]._embedded["wp:term"][0][0].name,
-          description: initialData[0].yoast_head_json.og_description,
-          images: initialData[0].yoast_head_json.og_image
-        }}
-      />
+      {initialData && initialData.length > 0 ? (
+        <NextSeo
+          title={initialData[0]._embedded["wp:term"][0][0].name}
+          description={initialData[0].yoast_head_json.og_description}
+          openGraph={{
+            title: initialData[0]._embedded["wp:term"][0][0].name,
+            description: initialData[0].yoast_head_json.og_description,
+            images: initialData[0].yoast_head_json.og_image,
+          }}
+        />
+      ) : (
+        <NextSeo title="" description="" openGraph={{}} />
+      )}
        <div className={styles.latestWrap}>
         <Container>
           {bannerData && bannerData.length > 0 && (

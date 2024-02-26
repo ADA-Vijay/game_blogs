@@ -29,7 +29,9 @@ const index = ({ data }) => {
   const { category, sub_category } = router.query;
   return (
     <div>
-      <NextSeo
+
+{data && data.length > 0 ? (
+        <NextSeo
         title={data[0].yoast_head_json.title}
         description={data[0].yoast_head_json.description}
         openGraph={{
@@ -45,6 +47,13 @@ const index = ({ data }) => {
           ],
         }}
       />
+      ) : (
+        <NextSeo title="" description="" openGraph={{}} />
+      )}
+
+
+
+      
 
       <div className={styles.latestWrap}>
         <Container>

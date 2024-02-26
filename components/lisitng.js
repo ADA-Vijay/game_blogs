@@ -43,7 +43,7 @@ const lisitng = ({newdata}) => {
         <div className={styles.latestContent}>
           <div className={styles.titleName}>{}</div>
           <div className={styles.latestBox}>
-            {newdata.map((card, index) => (
+            { newdata && newdata.length> 0 ? (newdata.map((card, index) => (
               <Link  href={card._embedded["wp:term"][0][0].slug + "/"+card.slug} key={index}>
                  <div
                 className={styles.latestBoxItem}
@@ -70,7 +70,9 @@ const lisitng = ({newdata}) => {
               </div>
               </Link>
            
-            ))}
+            ))) : (<>
+              <p>no data to show</p>
+            </>)}
           </div>
         </div>
         <div className={styles.trendingTopWrap}>
