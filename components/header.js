@@ -53,18 +53,13 @@ export default function Header() {
     }
   };
 
-  // const handleSearch = (event) => {
-  //   event.preventDefault();
-  //   const searchQuery = event.target.elements.search.value;
 
-  //   router.push(`/search?query=${searchQuery}`);
-  // };
 
   return (
     <Navbar expand="lg" className={styles.headerWrap}>
       <Container>
-        <Navbar.Brand href="/">Logo</Navbar.Brand>
-        <Navbar.Brand href="/">Gamewitted</Navbar.Brand>
+        <Navbar.Brand href="/"  aria-label="logo">Logo</Navbar.Brand>
+        <Navbar.Brand href="/"  aria-label="gamewitted">Gamewitted</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
@@ -79,7 +74,7 @@ export default function Header() {
                         >
                           {subCategory.get(cat.id).map((sub) => (
                             <NavDropdown.Item key={sub.id}>
-                            <Link key={sub.id} href={`/${sub.slug}`} className={`${styles.navLink} ${styles.headerlink}`}>
+                            <Link key={sub.id} href={`/${sub.slug}`} className={`${styles.navLink} ${styles.headerlink}`} aria-label="subcategory">
                               {sub.name}
                             </Link>
                           </NavDropdown.Item>                          
@@ -104,8 +99,8 @@ export default function Header() {
               <div className={styles.searchHeaderWrap}>
                
                 <div className={styles.searchInput}>
-                  <Form.Control type="text" placeholder="" value={searchQuery} onChange={(e)=>setSearchQuery(e.target.value)}/>
-                  <Link className={styles.searchLink} href={searchQuery && searchQuery !== "" && "/search?query="+ searchQuery}>
+                  <Form.Control type="text" placeholder="" value={searchQuery} onChange={(e)=>setSearchQuery(e.target.value)} aria-label="search"/>
+                  <Link className={styles.searchLink} href={searchQuery && searchQuery !== "" && "/search?query="+ searchQuery} aria-label="serach">
                   <span className={styles.searchIcon} >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
