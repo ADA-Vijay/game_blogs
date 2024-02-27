@@ -234,50 +234,42 @@ export default Index;
 
 
 
-  
 export async function getServerSideProps(context) {
   const { category } = context.query;
-  if (!category) {
-    return {
-      props: { initialData: null },
-    };
-  }
-
   const ApiUrl = process.env.NEXT_PUBLIC_API_URL;
-
+  
   try {
     const categoryResponse = await axios.get(
       `${ApiUrl}categories?slug=${category}`
     );
     const categoryId = categoryResponse.data[0]?.id;
 
-    if (!categoryId) {
-      return {
-        props: { initialData: [] },
-      };
+    let initialData = [];
+    if (categoryId) {
+      const response = await axios.get(
+        `${ApiUrl}posts?categories=${categoryId}&per_page=10&_embed`
+      );
+      initialData = response.data || [];
     }
 
-    const response = await axios.get(
-      `${ApiUrl}posts?categories=${categoryId}&per_page=10&_embed`
-    );
     const bannerResponse = await axios.get(
-      ApiUrl + "posts?tags=606508198&_embed&per_page=4&orderby=date&order=desc"
+      `${ApiUrl}posts?tags=606508198&_embed&per_page=4&orderby=date&order=desc`
     );
-    const bannerData = bannerResponse.data;
-    const initialData = response.data;
-    if (initialData.length > 0) {
-      return {
-        props: { initialData: initialData, bannerData: bannerData },
-      };
-    } else {
-      return {
-        props: { initialData: initialData },
-      };
-    }
+    const bannerData = bannerResponse.data || [];
+
+    return {
+      props: {
+        initialData,
+        bannerData,
+      },
+    };
   } catch (error) {
     console.error("Error while fetching the data", error);
     return {
-      props: { initialData: null },
+      props: {
+        initialData: [],
+        bannerData: [],
+      },
     };
   }
 }
