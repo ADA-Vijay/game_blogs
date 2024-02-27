@@ -4,7 +4,8 @@ const nextConfig = {
   env :{
     NEXT_PUBLIC_API_URL:"https://ashgamewitted.wpcomstaging.com/wp-json/wp/v2/"
 
-  }
+  },
+
   
 };
 

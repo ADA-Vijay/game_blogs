@@ -1,14 +1,9 @@
-import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "next/font/google";
-import Header from "../components/header";
 import Footer from "../components/footer";
 import HeroBanner from "../components/heroBanner";
 import Container from "react-bootstrap/Container";
 import styles from "@/styles/Home.module.css";
 import axios from "axios";
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
 import { NextSeo } from "next-seo";
 import ListingPage from "@/components/lisitng";
 import Link from "next/link";

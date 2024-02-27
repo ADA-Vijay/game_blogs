@@ -1,12 +1,3 @@
-// import React from "react";
-// import { useRouter } from "next/router";
-// import axios from "axios";
-// import { Container } from "react-bootstrap";
-// import styles from "@/styles/Home.module.css";
-// import Link from "next/link";
-// const Index = ({ data }) => {
-//   console.log("Category Data :", data);
-
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -93,31 +84,7 @@ const Index = ({ initialData, bannerData }) => {
   
 
 
-  const Navigate = async (data) => {
 
-    const categoryArray = data._embedded["wp:term"][0];
-
-    if (categoryArray && categoryArray.length > 0) {
-      const firstCategory = categoryArray[0];
-
-      if (firstCategory.name) {
-        const categoryName = firstCategory.slug;
-        const postTitle = data.slug;
-
-        if (categoryName && postTitle) {
-          router.push(`/${categoryName}/${postTitle}`);
-        } else {
-          console.error(
-            "Category name or post title is missing in the response."
-          );
-        }
-      } else {
-        console.error("Category information not found in the response.");
-      }
-    } else {
-      console.error("No categories found for this post.");
-    }
-  };
 
 
   return (
