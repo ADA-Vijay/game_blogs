@@ -15,37 +15,43 @@ import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
-
 export default function Home({ newdata, bannerData, trendingPosts }) {
-
   return (
     <>
-
-{newdata && newdata.length > 0 ? (
-         <NextSeo
-         title="Home | AshGamewitted"
-         description={newdata[0].yoast_head_json.og_description}
-         openGraph={{
-           title: "Home | AshGamewitted",
-           description: newdata[0].yoast_head_json.og_description,
-           images: [
-             {
-               url: newdata[0].yoast_head_json.og_image[0].url,
-               height: 1200,
-               width: 600,
-             },
-           ],
-         }}
-       />
+      {newdata && newdata.length > 0 ? (
+        <NextSeo
+          title="Home | AshGamewitted"
+          description={newdata[0].yoast_head_json.og_description}
+          openGraph={{
+            title: "Home | AshGamewitted",
+            description: newdata[0].yoast_head_json.og_description,
+            images: [
+              {
+                url: newdata[0].yoast_head_json.og_image[0].url,
+                height: 1200,
+                width: 600,
+              },
+            ],
+          }}
+        />
       ) : (
         <NextSeo
-        title="Home | AshGamewitted"
-        description="" 
-        openGraph={{}} />
+          title="AshGamewitted"
+          description="Welcome to AshGamewitted, your ultimate destination for immersive gaming and captivating anime content! Dive into a world where pixels meet passion, as we bring you the latest updates, reviews, and insights from the gaming and anime realms."
+          openGraph= {{
+            title:"AshGamewitted",
+            description:"Welcome to AshGamewitted, your ultimate destination for immersive gaming and captivating anime content! Dive into a world where pixels meet passion, as we bring you the latest updates, reviews, and insights from the gaming and anime realms.",
+            images :[
+              {
+                url:"",
+                width: 1200,
+                height: 630,
+                alt: 'AshGamewitted',
+              }
+            ]
+          }}
+        />
       )}
-
-
-     
 
       <main className="">
         {bannerData && bannerData.length > 0 && (
@@ -54,7 +60,10 @@ export default function Home({ newdata, bannerData, trendingPosts }) {
         <div className={styles.promoWrap}>
           <Container>
             <div className={styles.promoBody}>
-              <div className={styles.promoTitles}><h4>POPULAR CATEGORIES</h4><div className={styles.headingLine}></div></div>
+              <div className={styles.promoTitles}>
+                <h4>POPULAR CATEGORIES</h4>
+                <div className={styles.headingLine}></div>
+              </div>
               <div className={styles.promoBox}>
                 {trendingPosts && trendingPosts.length > 0
                   ? trendingPosts.map((card, index) => (
@@ -81,10 +90,13 @@ export default function Home({ newdata, bannerData, trendingPosts }) {
             </div>
           </Container>
         </div>
-        
+
         <Container>
-          <div className={styles.promoTitles}><h4>Latest</h4><div className={styles.headingLine}></div></div>
-          </Container>
+          <div className={styles.promoTitles}>
+            <h4>Latest</h4>
+            <div className={styles.headingLine}></div>
+          </div>
+        </Container>
         <ListingPage newdata={newdata} />
         <Footer></Footer>
       </main>

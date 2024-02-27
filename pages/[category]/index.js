@@ -133,8 +133,22 @@ const Index = ({ initialData, bannerData }) => {
           }}
         />
       ) : (
-        <NextSeo title="" description="" openGraph={{}} />
-      )}
+        <NextSeo
+        title="AshGamewitted"
+        description="Welcome to AshGamewitted, your ultimate destination for immersive gaming and captivating anime content! Dive into a world where pixels meet passion, as we bring you the latest updates, reviews, and insights from the gaming and anime realms."
+        openGraph= {{
+          title:"AshGamewitted",
+          description:"Welcome to AshGamewitted, your ultimate destination for immersive gaming and captivating anime content! Dive into a world where pixels meet passion, as we bring you the latest updates, reviews, and insights from the gaming and anime realms.",
+          images :[
+            {
+              url:"",
+              width: 1200,
+              height: 630,
+              alt: 'AshGamewitted',
+            }
+          ]
+        }}
+      />      )}
        <div className={styles.latestWrap}>
         <Container>
           {bannerData && bannerData.length > 0 && (

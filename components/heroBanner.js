@@ -25,8 +25,7 @@ function HeroBanner({ bannerData }) {
                     <h6 className={styles.heroCardBoxItemBags}>
                       {card._embedded["wp:term"][0][0].name}
                     </h6>
-                    <h4 className={styles.heroCardBoxItemName}>
-                      {card.title.rendered}
+                    <h4 className={styles.heroCardBoxItemName} dangerouslySetInnerHTML={{__html:card.title.rendered}}>
                     </h4>
                   </div>
                 </div>

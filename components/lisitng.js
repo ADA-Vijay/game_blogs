@@ -31,11 +31,11 @@ const lisitng = ({newdata}) => {
         return date.toLocaleDateString('en-US', options);
       };
     
-      const formatTime = (isoDate) => {
-        const options = { hour: '2-digit', minute: '2-digit'};
-        const date = new Date(isoDate);
-        return date.toLocaleTimeString('en-US', options);
-      };
+      // const formatTime = (isoDate) => {
+      //   const options = { hour: '2-digit', minute: '2-digit'};
+      //   const date = new Date(isoDate);
+      //   return date.toLocaleTimeString('en-US', options);
+      // };
   return (
     <div className={styles.latestWrap}>
     <Container>
@@ -58,7 +58,10 @@ const lisitng = ({newdata}) => {
                 <div className={styles.latestInfo} key={index}>
                   <h6>{card._embedded["wp:term"][0][0].name}</h6>
                   <p dangerouslySetInnerHTML={{__html:card.title.rendered}}></p>
-                  <span>{formatDate(card.date)} {formatTime(card.date)}</span>
+                  <span>
+                    {formatDate(card.date)}
+                     {/* {formatTime(card.date)} */}
+                     </span>
                   <h5 className="description">Author : {card._embedded.author[0].name}</h5>
                   {/* <h5
                     className="description"
@@ -71,7 +74,7 @@ const lisitng = ({newdata}) => {
               </Link>
            
             ))) : (<>
-              <p>no data to show</p>
+              <p>No data found</p>
             </>)}
           </div>
         </div>
